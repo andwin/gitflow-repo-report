@@ -11,6 +11,7 @@ get '/' do
 end
 
 get '/list/' do
+	@list = ReportRepository.list
 	erb :list
 end
 
