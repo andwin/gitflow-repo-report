@@ -4,14 +4,11 @@ require_relative 'models/report.rb'
 set :erb, :layout => :'layouts/default'
 
 get '/' do
-
 	@report = Report.new
 
-	@repost.repos.push('repo1')
-	@repost.repos.push('repo2')
-	@repost.repos.push('repo3')
-
-	@report.test = 'hej'
+	@report.repos.push('repo1')
+	@report.repos.push('repo2')
+	@report.repos.push('repo3')
 
 	erb :index
 end

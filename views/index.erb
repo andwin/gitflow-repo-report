@@ -2,10 +2,10 @@
 
 <h2>3 repos in report</h2>
 <ul>
-	<li>nanoc</li>
+	<% @report.repos.each do |repo| %>
+		<li><%= repo %></li>
+	<% end %>
 </ul>
-
-<%= @report.test %>
 
 <h2>51 Old feature brances</h2>
 <ul>
