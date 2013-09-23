@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'git'
 require_relative 'models/report.rb'
 
 set :erb, :layout => :'layouts/default'
