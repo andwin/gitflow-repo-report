@@ -18,5 +18,5 @@ get '/list/' do
 end
 
 get '/generate/' do
-	erb 'generating new repot...'
+	erb 'generating new report...'
 end
