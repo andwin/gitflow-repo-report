@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'git'
 require_relative 'models/report.rb'
 
 set :erb, :layout => :'layouts/default'
@@ -34,5 +35,5 @@ get '/list/' do
 end
 
 get '/generate/' do
-	erb 'generating new repot...'
+	erb 'generating new report...'
 end
