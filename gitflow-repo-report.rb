@@ -27,7 +27,7 @@ get '/' do
 
 	@report.repos_with_unmerged_master_branch.push('repo2 master')
 
-	erb :index
+	erb :report
 end
 
 get '/list/' do
