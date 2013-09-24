@@ -5,7 +5,7 @@ class ReportRepository
 	def self.latest
 		report = Report.new
 
-		report.date = DateTime.now
+		report.date = Time.now
 
 		report.repos.push('repo1')
 		report.repos.push('repo2')
@@ -42,7 +42,7 @@ class ReportRepository
 
 		report = Report.new
 
-		report.date = DateTime.now
+		report.date = Time.now
 
 		report.repos.push('repo1')
 		report.repos.push('repo2')
