@@ -38,4 +38,21 @@ class ReportRepository
 				'2013-09-17 22:16:15']
 	end
 
+	def self.load(name)
+
+		report = Report.new
+
+		report.date = DateTime.now
+
+		report.repos.push('repo1')
+		report.repos.push('repo2')
+
+		report.old_feature_branches.push('repo2 feature/ticket-7653')
+		report.old_feature_branches.push('repo3 feature/ticket-5456')
+
+		report.unmerged_release_branches.push('repo1 release/ticket-1233')
+		report.unmerged_release_branches.push('repo2 release/ticket-1453')
+
+		report
+	end
 end
