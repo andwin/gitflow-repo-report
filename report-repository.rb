@@ -29,13 +29,15 @@ class ReportRepository
 	end
 
 	def self.list
-		list = ['2013-09-23 23:13:23', 
-				'2013-09-22 22:12:56', 
-				'2013-09-21 21:16:23', 
-				'2013-09-20 22:12:45', 
-				'2013-09-19 21:11:23', 
-				'2013-09-18 23:16:13', 
-				'2013-09-17 22:16:15']
+
+		list = Array.new
+
+		Dir.foreach('reports') do |item|
+			next if item == '.' or item == '..'
+			list.push item
+		end
+
+		list.sort.reverse
 	end
 
 	def self.load(name)
