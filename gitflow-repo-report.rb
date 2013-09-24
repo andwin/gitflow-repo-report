@@ -16,7 +16,8 @@ get '/list/' do
 end
 
 get '/view/:name/' do
-	erb params[:name]
+	@report = ReportRepository.load(params[:name])
+	erb :report
 end
 
 get '/generate/' do
