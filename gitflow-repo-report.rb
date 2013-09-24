@@ -15,6 +15,10 @@ get '/list/' do
 	erb :list
 end
 
+get '/view/:name/' do
+	erb params[:name]
+end
+
 get '/generate/' do
 	erb 'generating new report...'
 end
