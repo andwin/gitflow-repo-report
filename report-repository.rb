@@ -24,7 +24,7 @@ class ReportRepository
 		report.unmerged_release_branches.push('repo4 release/ticket-1233')
 		report.unmerged_release_branches.push('repo5 release/ticket-1454')
 
-		report.repos_with_unmerged_master_branch.push('repo2 master')
+		report.master_branches_with_commits_missing_from_develop.push('repo2 master')
 
 		report
 	end
@@ -46,7 +46,7 @@ class ReportRepository
 
 		report.date = Time.now
 		report.repos.push(name)
-		report.repos_with_unmerged_master_branch.concat(branch_names)
+		report.master_branches_with_commits_missing_from_develop.concat(branch_names)
 
 		report
 	end
