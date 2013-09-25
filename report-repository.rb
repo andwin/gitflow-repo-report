@@ -1,4 +1,5 @@
 require_relative 'models/report.rb'
+require 'grit'
 
 class ReportRepository
 
@@ -39,19 +40,13 @@ class ReportRepository
 	end
 
 	def self.load(name)
-
+		repo = Grit::Repo.new("~/dev/" << name)
+		branch_names = repo.heads().map { |a| a.name }
 		report = Report.new
 
 		report.date = Time.now
-
-		report.repos.push('repo1')
-		report.repos.push('repo2')
-
-		report.old_feature_branches.push('repo2 feature/ticket-7653')
-		report.old_feature_branches.push('repo3 feature/ticket-5456')
-
-		report.unmerged_release_branches.push('repo1 release/ticket-1233')
-		report.unmerged_release_branches.push('repo2 release/ticket-1453')
+		report.repos.push(name)
+		report.repos_with_unmerged_master_branch.concat(branch_names)
 
 		report
 	end

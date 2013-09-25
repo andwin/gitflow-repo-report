@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'grit'
 require_relative 'models/report.rb'
 require_relative 'report-repository.rb'
 
