@@ -21,9 +21,9 @@
 	<% end %>
 </ul>
 
-<h2><%= @report.repos_with_unmerged_master_branch.count %> Master branch with commits missing from develop</h2>
+<h2><%= @report.master_branches_with_commits_missing_from_develop.count %> Master branches with commits missing from develop</h2>
 <ul>
-	<% @report.repos_with_unmerged_master_branch.each do |branch| %>
+	<% @report.master_branches_with_commits_missing_from_develop.each do |branch| %>
 		<li><%= branch %></li>
 	<% end %>
 </ul>
