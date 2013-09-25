@@ -8,7 +8,6 @@ class ReportRepository
 	end
 
 	def self.list
-
 		list = Array.new
 
 		Dir.foreach('reports') do |item|
@@ -20,7 +19,6 @@ class ReportRepository
 	end
 
 	def self.load(name)
-		report = YAML.load(File.read("reports/#{name}/data.yaml"))
-		report
+		YAML.load(File.read("reports/#{name}/data.yaml"))
 	end
 end
