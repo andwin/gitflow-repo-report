@@ -10,7 +10,7 @@ Getting started
 ---------------
 
 * Just run ```bundle install```
-* ```ruby report.rb``` launches the application, probably at localhost:4567
+* ```ruby gitflow-repo-report.rb``` launches the application, probably at localhost:4567
 
 The "bundle install" command will hopefully install everything you need,
 such as Sinatra (see http://www.sinatrarb.com/intro.html), rack, rack-
