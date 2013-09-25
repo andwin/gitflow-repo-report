@@ -41,7 +41,7 @@ class ReportRepository
 
 	def self.load(name)
 		repo = Grit::Repo.new("~/dev/" << name)
-		branch_names = repo.heads().map { |a| a.name }
+		branch_names = repo.heads().map { |a| name << " " << a.name }
 		report = Report.new
 
 		report.date = Time.now
