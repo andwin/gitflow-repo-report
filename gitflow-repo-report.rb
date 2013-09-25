@@ -5,7 +5,7 @@ require_relative 'report-repository.rb'
 
 set :erb, :layout => :'layouts/default'
 
-get '/' do 
+get '/' do
 	@report = ReportRepository.latest
 	erb :report
 end
