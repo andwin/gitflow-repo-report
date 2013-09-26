@@ -22,6 +22,12 @@ installed, or if you are not using a UNIX-like system, please get yourself
 together and install it.
 
 
+Tests
+-----
+
+To run the tests: ```ruby tests/test_report_generator```
+
+
 Using the application
 ---------------------
 
