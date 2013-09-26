@@ -1,6 +1,6 @@
 require 'sinatra'
 require_relative 'models/report.rb'
-require_relative 'report-repository.rb'
+require_relative 'report_repository.rb'
 
 set :erb, :layout => :'layouts/default'
 

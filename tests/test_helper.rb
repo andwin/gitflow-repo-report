@@ -9,9 +9,9 @@ class Test::Unit::TestCase
 		@tmp_repo_path = File.join("/tmp/", @tmp_repo_path)
 
 		FileUtils.mkdir_p(@tmp_repo_path)
-		FileUtils.cp_r('tests/test-repos', @tmp_repo_path)
+		FileUtils.cp_r('tests/test_repos', @tmp_repo_path)
 
-		Dir.glob(File.join(@tmp_repo_path, 'test-repos/*')) do |repo|
+		Dir.glob(File.join(@tmp_repo_path, 'test_repos/*')) do |repo|
 			FileUtils.mv(File.join(repo, '_git'), File.join(repo, '.git'))
 		end
 
