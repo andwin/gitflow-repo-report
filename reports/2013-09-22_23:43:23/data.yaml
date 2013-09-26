@@ -14,7 +14,7 @@ unmerged_release_branches:
 - repo2 release/ticket-1453
 - repo2 release/ticket-233
 - repo4 release/ticket-1233
-- repo5 release/ticket-1454
+- repo5 release/ticket-1454tu
 master_branches_with_commits_missing_from_develop:
 - repo2 master
 date: 2013-09-22 12:20:48.930589474 +02:00
