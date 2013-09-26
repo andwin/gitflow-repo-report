@@ -1,11 +1,11 @@
-require_relative '../report-generator.rb'
+require_relative '../report_generator.rb'
 require_relative 'test_helper.rb'
 
 class TestReportGenerator < Test::Unit::TestCase
 
 	def setup
 		tmp_repo_path = setup_tmp_repo_dir
-		@report_generator = ReportGenerator.new File.join(tmp_repo_path, 'test-repos')
+		@report_generator = ReportGenerator.new File.join(tmp_repo_path, 'test_repos')
 	end
 
 	def teardown
