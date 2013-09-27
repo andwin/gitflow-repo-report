@@ -22,6 +22,14 @@ installed, or if you are not using a UNIX-like system, please get yourself
 together and install it.
 
 
+Tests
+-----
+
+To run the RSpec tests: ```rspec tests```
+
+To run the Test::Unit tests: ```ruby tests/test_report_generator.rb```
+
+
 Using the application
 ---------------------
 
