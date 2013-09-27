@@ -25,7 +25,9 @@ together and install it.
 Tests
 -----
 
-To run the tests: ```ruby tests/test_report_generator```
+To run the RSpec tests: ```rspec tests```
+
+To run the Test::Unit tests: ```ruby tests/test_report_generator.rb```
 
 
 Using the application
