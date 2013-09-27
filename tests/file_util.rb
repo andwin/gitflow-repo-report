@@ -8,7 +8,7 @@ class FileUtil
 		@tmp_repo_path = File.join("/tmp/", @tmp_repo_path)
 
 		FileUtils.mkdir_p(@tmp_repo_path)
-		FileUtils.cp_r(Dir['tests/test-repos/*'], @tmp_repo_path)
+		FileUtils.cp_r(Dir['tests/test_repos/*'], @tmp_repo_path)
 
 		Dir.glob(Dir[File.join(@tmp_repo_path, '*')]) do |repo|
 			FileUtils.mv(File.join(repo, '_git'), File.join(repo, '.git'))

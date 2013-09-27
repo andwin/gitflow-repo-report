@@ -1,4 +1,4 @@
-require_relative '../report-generator.rb'
+require_relative '../report_generator.rb'
 require_relative 'file_util.rb'
 
 describe ReportGenerator do
