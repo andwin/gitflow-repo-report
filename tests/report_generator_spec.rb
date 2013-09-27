@@ -6,7 +6,7 @@ describe ReportGenerator do
 	before(:each) do
 		@file_util = FileUtil.new
 		tmp_repo_path = @file_util.setup_tmp_repo_dir
-		@report_generator = ReportGenerator.new File.join(tmp_repo_path, 'test-repos')
+		@report_generator = ReportGenerator.new tmp_repo_path
 	end
 
 	after(:each) do
