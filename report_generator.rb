@@ -1,4 +1,4 @@
-require 'grit'
+require 'git'
 require_relative 'models/report.rb'
 
 class ReportGenerator
@@ -10,8 +10,8 @@ class ReportGenerator
 	def get_repos
 		repos = Array.new
 
-		Dir.glob(File.join(@repo_path, '*')) do |repo|
-			repos.push File.basename repo
+		Dir.glob(File.join(@repo_path, '*')) do |repo_path|
+			repos.push File.basename repo_path
 		end
 
 		repos
@@ -19,10 +19,10 @@ class ReportGenerator
 
 	def get_branch_names
 		branch_names = Array.new
-		Dir.glob(File.join(@repo_path, '*')) do |repo|
-			repoName = File.basename repo
-			gritRepo = Grit::Repo.new(repo)
-			branch_names.concat gritRepo.heads().map { |a| repoName + " " << a.name }
+		Dir.glob(File.join(@repo_path, '*')) do |repo_path|
+			repo_name = File.basename repo_path
+			git_repo = Git.open(repo_path)
+			branch_names.concat git_repo.branches().map { |a| repo_name + " " << a.name }
 		end
 		branch_names
 	end
