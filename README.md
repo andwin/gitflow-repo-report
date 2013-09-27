@@ -16,8 +16,8 @@ using ```gem install shotgun``` and run the application
 with ```shotgun --port 4567 gitflow-repo-report.rb```
 
 The "bundle install" command will hopefully install everything you need,
-such as Sinatra (see http://www.sinatrarb.com/intro.html), gist, rack,
-rack-protection and tilt, using bundler for Ruby. If you do not have Ruby
+such as Sinatra (see http://www.sinatrarb.com/intro.html), Ruby/git, rspec
+and their dependencies, using bundler for Ruby. If you do not have Ruby
 installed, or if you are not using a UNIX-like system, please get yourself
 together and install it.
 
