@@ -2,7 +2,6 @@ require_relative '../report_generator.rb'
 require_relative 'test_helper.rb'
 
 class TestReportGenerator < Test::Unit::TestCase
-
 	def setup
 		tmp_repo_path = setup_tmp_repo_dir
 		@report_generator = ReportGenerator.new File.join(tmp_repo_path, 'test_repos')
@@ -26,7 +25,6 @@ class TestReportGenerator < Test::Unit::TestCase
 		assert_equal(7, branch_names.count)
 	end
 
-
 	def test_get_release_branches_not_merged_to_develop
 		branch_names = @report_generator.get_release_branches_not_merged_to_develop
 		assert_equal('test-repo-1 release/first-release', branch_names[0])
@@ -41,5 +39,4 @@ class TestReportGenerator < Test::Unit::TestCase
 		assert_equal('test-repo-2 release/second-release', branch_names[2])
 		assert_equal(3, branch_names.count)
 	end
-
 end
