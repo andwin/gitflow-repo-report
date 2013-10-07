@@ -26,15 +26,13 @@ class ReportGenerator
 
 	def get_release_branches_not_merged_to_develop
 		branch_names = []
-		Dir.glob(File.join(@repo_path, '*')) do |repo_path|
-			repo_name = File.basename repo_path
-			git_repo = Git.open(repo_path)
-			git_repo.branches().each do |branch|
-				if branch.name.start_with? 'release/'
-					commit_count = `git log #{branch.name} ^develop --pretty=oneline | wc -l`
-					if commit_count.strip != '0'
-						branch_names.push repo_name + " " + branch.name
-					end
+		get_repo_names.each do |repo_name|
+			repo = get_repo repo_name
+			branches = repo.branches.select { |branch| branch.name.start_with? 'release/' }
+			branches.each do |branch|
+				commit_count = `git log #{branch.name} ^develop --pretty=oneline | wc -l`
+				if commit_count.strip != '0'
+					branch_names.push repo_name + " " + branch.name
 				end
 			end
 		end
@@ -43,18 +41,24 @@ class ReportGenerator
 
 	def get_release_branches_not_merged_to_master
 		branch_names = []
-		Dir.glob(File.join(@repo_path, '*')) do |repo_path|
-			repo_name = File.basename repo_path
-			git_repo = Git.open(repo_path)
-			git_repo.branches().each do |branch|
-				if branch.name.start_with? 'release/'
-					commit_count = `git log #{branch.name} ^master --pretty=oneline | wc -l`
-					if commit_count.strip != '0'
-						branch_names.push repo_name + " " + branch.name
-					end
+		get_repo_names.each do |repo_name|
+			repo = get_repo repo_name
+			branches = repo.branches.select { |branch| branch.name.start_with? 'release/' }
+			branches.each do |branch|
+				commit_count = `git log #{branch.name} ^master --pretty=oneline | wc -l`
+				if commit_count.strip != '0'
+					branch_names.push repo_name + " " + branch.name
 				end
 			end
 		end
 		branch_names
 	end
+
+	private
+
+	def get_repo repo_name
+		repo_path = File.join(@repo_path, repo_name)
+		Git.open(repo_path)
+	end
+
 end
