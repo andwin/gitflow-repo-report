@@ -25,40 +25,36 @@ class ReportGenerator
 	end
 
 	def get_release_branches_not_merged_to_develop
-		branch_names = []
-		get_repo_names.each do |repo_name|
-			repo = get_repo repo_name
-			branches = repo.branches.select { |branch| branch.name.start_with? 'release/' }
-			branches.each do |branch|
-				commit_count = `git log #{branch.name} ^develop --pretty=oneline | wc -l`
-				if commit_count.strip != '0'
-					branch_names.push repo_name + " " + branch.name
-				end
-			end
-		end
-		branch_names
+		get_branches_with_diffs 'release/', 'develop'
 	end
 
 	def get_release_branches_not_merged_to_master
+		get_branches_with_diffs 'release/', 'master'
+	end
+
+	private
+
+	def get_branches_with_diffs branch1, branch2
 		branch_names = []
 		get_repo_names.each do |repo_name|
 			repo = get_repo repo_name
-			branches = repo.branches.select { |branch| branch.name.start_with? 'release/' }
+			branches = repo.branches.select { |branch| branch.name.start_with? branch1 }
 			branches.each do |branch|
-				commit_count = `git log #{branch.name} ^master --pretty=oneline | wc -l`
-				if commit_count.strip != '0'
+				if branches_diff? branch.name, branch2
 					branch_names.push repo_name + " " + branch.name
 				end
 			end
 		end
-		branch_names
+		branch_names		
 	end
-
-	private
 
 	def get_repo repo_name
 		repo_path = File.join(@repo_path, repo_name)
 		Git.open(repo_path)
 	end
 
+	def branches_diff? branch1, branch2
+		commit_count = `git log #{branch1} ^#{branch2} --pretty=oneline | wc -l`
+		commit_count.strip != '0'
+	end
 end
