@@ -6,12 +6,12 @@ class ReportGenerator
 		@repo_path = repo_path
 	end
 
-	def get_repos
-		repos = []
+	def get_repo_names
+		repo_names = []
 		Dir.glob(File.join(@repo_path, '*')) do |repo_path|
-			repos.push File.basename repo_path
+			repo_names.push File.basename repo_path
 		end
-		repos
+		repo_names
 	end
 
 	def get_branch_names

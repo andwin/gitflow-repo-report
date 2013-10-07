@@ -11,8 +11,8 @@ class TestReportGenerator < Test::Unit::TestCase
 		remove_tmp_repo_dir
 	end
 
-	def test_get_repos
-		repos = @report_generator.get_repos
+	def test_get_repo_names
+		repos = @report_generator.get_repo_names
 		assert_equal('test-repo-1', repos[0])
 		assert_equal('test-repo-2', repos[1])
 		assert_equal(2, repos.count)
