@@ -34,7 +34,7 @@ describe ReportGenerator do
 		end
 
 		it "should contain correct number of branch names (all of them)" do
-			expect(@branch_names.count).to eq(7)
+			expect(@branch_names.count).to eq(9)
 		end
 
 		it "should include develop branch of test-repo-1" do
