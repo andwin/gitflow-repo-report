@@ -25,6 +25,12 @@ class TestReportGenerator < Test::Unit::TestCase
 		assert_equal(7, branch_names.count)
 	end
 
+	def test_get_master_branches_not_merged_to_develop
+		branch_names = @report_generator.get_master_branches_not_merged_to_develop
+		assert_equal('test-repo-1 master', branch_names[0])
+		assert_equal(1, branch_names.count)
+	end
+
 	def test_get_release_branches_not_merged_to_develop
 		branch_names = @report_generator.get_release_branches_not_merged_to_develop
 		assert_equal('test-repo-1 release/first-release', branch_names[0])

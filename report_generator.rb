@@ -24,6 +24,10 @@ class ReportGenerator
 		branch_names
 	end
 
+	def get_master_branches_not_merged_to_develop
+		get_branches_with_diffs 'master', 'develop'
+	end
+
 	def get_release_branches_not_merged_to_develop
 		get_branches_with_diffs 'release/', 'develop'
 	end
