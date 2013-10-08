@@ -36,15 +36,23 @@ class ReportGenerator
 		get_branches_with_diffs 'release/', 'master'
 	end
 
+	def get_merged_feature_branches
+		get_branches_with_diffs 'feature/', 'develop', false
+	end
+
+	def get_unmerged_feature_branches
+		get_branches_with_diffs 'feature/', 'develop'
+	end
+
 	private
 
-	def get_branches_with_diffs branch1, branch2
+	def get_branches_with_diffs branch1, branch2, look_for_merged_branches = true
 		branch_names = []
 		get_repo_names.each do |repo_name|
 			repo = get_repo repo_name
 			branches = repo.branches.select { |branch| branch.name.start_with? branch1 }
 			branches.each do |branch|
-				if branches_diff? branch.name, branch2
+				if branches_diff?(branch.name, branch2) == look_for_merged_branches
 					branch_names.push repo_name + " " + branch.name
 				end
 			end
