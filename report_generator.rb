@@ -1,9 +1,28 @@
 require 'git'
+require 'yaml'
 require_relative 'models/report.rb'
 
 class ReportGenerator
 	def initialize(repo_path)
 		@repo_path = repo_path
+	end
+
+	def generate_report reports_path
+		time = Time.new
+
+		report = Report.new
+		report.time = time
+		report.repo_names = get_repo_names
+		report.master_branches_not_merged_to_develop = get_master_branches_not_merged_to_develop
+		report.release_branches_not_merged_to_develop = get_release_branches_not_merged_to_develop
+		report.release_branches_not_merged_to_master = get_release_branches_not_merged_to_master
+		report.merged_feature_branches = get_merged_feature_branches
+		report.unmerged_feature_branches = get_unmerged_feature_branches
+
+		file_name = File.join(reports_path, time.strftime("%Y-%m-%d_%H-%M-%S") + '.yaml')
+		File.open(file_name, 'w') do |file|  
+		  file.puts YAML::dump(report)
+		end  
 	end
 
 	def get_repo_names
