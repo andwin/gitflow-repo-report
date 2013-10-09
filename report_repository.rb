@@ -10,7 +10,7 @@ class ReportRepository
 	def self.list
 		list = Array.new
 
-		Dir.foreach('reports') do |item|
+		Dir.glob('reports/*.yaml') do |item|
 			next if item == '.' or item == '..'
 			list.push item
 		end
@@ -19,6 +19,6 @@ class ReportRepository
 	end
 
 	def self.load(name)
-		YAML.load(File.read("reports/#{name}/data.yaml"))
+		YAML.load(File.read(name))
 	end
 end

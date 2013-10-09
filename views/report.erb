@@ -1,29 +1,43 @@
-<h1>Report generated <%=@report.date %></h1>
+<h1>Report generated <%=@report.time.strftime("%Y-%m-%d %H:%M:%S") %></h1>
 
-<h2><%= @report.repos.count %> repos in report</h2>
+<h2><%= @report.repo_names.count %> repos in report</h2>
 <ul>
-	<% @report.repos.each do |repo| %>
+	<% @report.repo_names.each do |repo| %>
 		<li><%= repo %></li>
 	<% end %>
 </ul>
 
-<h2><%= @report.old_feature_branches.count %> Old feature branches</h2>
+<h2><%= @report.master_branches_not_merged_to_develop.count %> Master branches not merged to develop</h2>
 <ul>
-	<% @report.old_feature_branches.each do |branch| %>
+	<% @report.master_branches_not_merged_to_develop.each do |branch| %>
 		<li><%= branch %></li>
 	<% end %>
 </ul>
 
-<h2><%= @report.unmerged_release_branches.count %> Unmerged release branches</h2>
+<h2><%= @report.release_branches_not_merged_to_develop.count %> Release branches not merged to develop</h2>
 <ul>
-	<% @report.unmerged_release_branches.each do |branch| %>
+	<% @report.release_branches_not_merged_to_develop.each do |branch| %>
 		<li><%= branch %></li>
 	<% end %>
 </ul>
 
-<h2><%= @report.master_branches_with_commits_missing_from_develop.count %> Master branches with commits missing from develop</h2>
+<h2><%= @report.release_branches_not_merged_to_master.count %> Release branches not merged to master</h2>
 <ul>
-	<% @report.master_branches_with_commits_missing_from_develop.each do |branch| %>
+	<% @report.release_branches_not_merged_to_master.each do |branch| %>
+		<li><%= branch %></li>
+	<% end %>
+</ul>
+
+<h2><%= @report.merged_feature_branches.count %> Merged feature branches</h2>
+<ul>
+	<% @report.merged_feature_branches.each do |branch| %>
+		<li><%= branch %></li>
+	<% end %>
+</ul>
+
+<h2><%= @report.unmerged_feature_branches.count %> Unmerged feature branches</h2>
+<ul>
+	<% @report.unmerged_feature_branches.each do |branch| %>
 		<li><%= branch %></li>
 	<% end %>
 </ul>
