@@ -1,6 +1,7 @@
 require 'sinatra'
 require_relative 'models/report.rb'
 require_relative 'report_repository.rb'
+require_relative 'report_generator.rb'
 
 set :erb, :layout => :'layouts/default'
 
@@ -20,5 +21,7 @@ get '/view/:name/?' do
 end
 
 get '/generate/?' do
-	erb 'generating new report...'
+	report_generator = ReportGenerator.new 'repos'
+	report_generator.generate_report 'reports'
+	erb 'report generates'
 end
