@@ -1,43 +1,16 @@
 <h1>Report generated <%=@report.time.strftime("%Y-%m-%d %H:%M:%S") %></h1>
 
-<h2><%= @report.repo_names.count %> repos in report</h2>
-<ul>
-	<% @report.repo_names.each do |repo| %>
-		<li><%= repo %></li>
-	<% end %>
-</ul>
+<%= erb :report_item, :layout => false, locals: {items: @report.repo_names, title: 'Repos in report'} %>
 
-<h2><%= @report.master_branches_not_merged_to_develop.count %> Master branches not merged to develop</h2>
-<ul>
-	<% @report.master_branches_not_merged_to_develop.each do |branch| %>
-		<li><%= branch %></li>
-	<% end %>
-</ul>
 
-<h2><%= @report.release_branches_not_merged_to_develop.count %> Release branches not merged to develop</h2>
-<ul>
-	<% @report.release_branches_not_merged_to_develop.each do |branch| %>
-		<li><%= branch %></li>
-	<% end %>
-</ul>
+<%= erb :report_item, :layout => false, locals: {items: @report.master_branches_not_merged_to_develop, title: 'Master branches not merged to develop'} %>
 
-<h2><%= @report.release_branches_not_merged_to_master.count %> Release branches not merged to master</h2>
-<ul>
-	<% @report.release_branches_not_merged_to_master.each do |branch| %>
-		<li><%= branch %></li>
-	<% end %>
-</ul>
 
-<h2><%= @report.merged_feature_branches.count %> Merged feature branches</h2>
-<ul>
-	<% @report.merged_feature_branches.each do |branch| %>
-		<li><%= branch %></li>
-	<% end %>
-</ul>
+<%= erb :report_item, :layout => false, locals: {items: @report.release_branches_not_merged_to_develop, title: 'Release branches not merged to develop'} %>
 
-<h2><%= @report.unmerged_feature_branches.count %> Unmerged feature branches</h2>
-<ul>
-	<% @report.unmerged_feature_branches.each do |branch| %>
-		<li><%= branch %></li>
-	<% end %>
-</ul>
+<%= erb :report_item, :layout => false, locals: {items: @report.release_branches_not_merged_to_master, title: 'Release branches not merged to master'} %>
+
+
+<%= erb :report_item, :layout => false, locals: {items: @report.merged_feature_branches, title: 'Merged feature branches'} %>
+
+<%= erb :report_item, :layout => false, locals: {items: @report.unmerged_feature_branches, title: 'Unmerged feature branches'} %>
