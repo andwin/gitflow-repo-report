@@ -27,22 +27,4 @@ describe ReportGenerator do
 			expect(@repos.count).to eq(2)
 		end
 	end
-
-	context "result of call to get_branch_names" do
-		before(:each) do
-			@branch_names = @report_generator.get_branch_names
-		end
-
-		it "should contain correct number of branch names (all of them)" do
-			expect(@branch_names.count).to eq(9)
-		end
-
-		it "should include develop branch of test-repo-1" do
-			expect(@branch_names).to include('test-repo-1 develop')
-		end
-
-		it "should include second release branch of test-repo-2" do
-			expect(@branch_names).to include('test-repo-2 release/second-release')
-		end
-	end
 end

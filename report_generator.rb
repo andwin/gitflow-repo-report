@@ -33,16 +33,6 @@ class ReportGenerator
 		repo_names
 	end
 
-	def get_branch_names
-		branch_names = []
-		Dir.glob(File.join(@repo_path, '*')) do |repo_path|
-			repo_name = File.basename repo_path
-			git_repo = Git.open(repo_path)
-			branch_names.concat git_repo.branches().map { |a| repo_name + " " << a.name }
-		end
-		branch_names
-	end
-
 	def get_master_branches_not_merged_to_develop
 		get_branches_with_diffs 'master', 'develop'
 	end
