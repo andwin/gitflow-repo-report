@@ -23,5 +23,5 @@ end
 get '/generate/?' do
 	report_generator = ReportGenerator.new 'repos'
 	report_generator.generate_report 'reports'
-	erb 'report generates'
+	erb 'report generated! <br /> <a href="/">Click here to view</a>'
 end
