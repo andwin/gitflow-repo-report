@@ -16,6 +16,6 @@ class ReportRepository
 	end
 
 	def self.load(name)
-		YAML.load(File.read(File.join('reports', name + '.yaml'))
+		YAML.load(File.read(File.join('reports', name + '.yaml')))
 	end
 end
