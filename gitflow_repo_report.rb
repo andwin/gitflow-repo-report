@@ -7,7 +7,9 @@ set :erb, :layout => :'layouts/default'
 
 get '/' do
 	@report = ReportRepository.latest
-	erb :report
+	return erb 'No reports found! <a href="/generate/">Click here to generate</a>' if @report == nil
+
+	erb :report 
 end
 
 get '/list/?' do

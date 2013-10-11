@@ -16,6 +16,8 @@ class ReportRepository
 	end
 
 	def self.load(name)
+		return nil if name == nil
+
 		YAML.load(File.read(File.join('reports', name + '.yaml')))
 	end
 end
