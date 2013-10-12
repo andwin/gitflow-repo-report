@@ -7,6 +7,7 @@ class ReportGenerator
 	end
 
 	def generate_report reports_path
+		update_repos
 		time = Time.new
 
 		report = Report.new
@@ -23,6 +24,15 @@ class ReportGenerator
 		File.open(file_name, 'w') do |file|  
 		  file.puts YAML::dump(report)
 		end  
+	end
+
+	def update_repos
+		pwd = Dir.pwd
+		get_repo_names.each do |repo_name|
+			Dir.chdir(File.join(@repo_path, repo_name))
+			`git fetch --prune`
+			Dir.chdir(pwd)
+		end
 	end
 
 	def get_repo_names
