@@ -8,11 +8,14 @@ class FileUtil
 		@tmp_repo_path = File.join("/tmp/", @tmp_repo_path)
 
 		FileUtils.mkdir_p(@tmp_repo_path)
-		FileUtils.cp_r(Dir['tests/test_repos/*'], @tmp_repo_path)
+		pwd = Dir.pwd
 
-		Dir.glob(Dir[File.join(@tmp_repo_path, '*')]) do |repo|
-			FileUtils.mv(File.join(repo, '_git'), File.join(repo, '.git'))
-		end
+		Dir.chdir @tmp_repo_path
+
+		`git clone --bare git@github.com:andwin/gitflow-repo-report-test-repo-1.git test-repo-1`
+		`git clone --bare git@github.com:andwin/gitflow-repo-report-test-repo-2.git test-repo-2`
+
+		Dir.chdir pwd
 
 		@tmp_repo_path
 	end

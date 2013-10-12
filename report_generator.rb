@@ -30,7 +30,7 @@ class ReportGenerator
 		Dir.glob(File.join(@repo_path, '*')) do |repo_path|
 			repo_names.push File.basename repo_path
 		end
-		repo_names
+		repo_names.sort
 	end
 
 	def get_master_branches_not_merged_to_develop
