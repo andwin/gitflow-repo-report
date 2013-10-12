@@ -88,7 +88,7 @@ class ReportGenerator
 	end
 
 	def branches_diff? branch1, branch2
-		commit_count = `git log #{branch1} ^#{branch2} --pretty=oneline | wc -l`
+		commit_count = `git log #{branch1} ^#{branch2} --no-merges --pretty=oneline | wc -l`
 		commit_count.strip != '0'
 	end
 end
