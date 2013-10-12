@@ -1,4 +1,3 @@
-require 'git'
 require 'yaml'
 require_relative 'models/report.rb'
 
@@ -20,6 +19,7 @@ class ReportGenerator
 		report.unmerged_feature_branches = get_unmerged_feature_branches
 
 		file_name = File.join(reports_path, time.strftime("%Y-%m-%d_%H-%M-%S") + '.yaml')
+
 		File.open(file_name, 'w') do |file|  
 		  file.puts YAML::dump(report)
 		end  
@@ -56,22 +56,25 @@ class ReportGenerator
 	private
 
 	def get_branches_with_diffs branch1, branch2, look_for_merged_branches = true
+		pwd = Dir.pwd
 		branch_names = []
 		get_repo_names.each do |repo_name|
-			repo = get_repo repo_name
-			branches = repo.branches.select { |branch| branch.name.start_with? branch1 }
+			Dir.chdir(File.join(@repo_path, repo_name))
+			branches = get_branches
+			branches = get_branches.select { |branch| branch.start_with? branch1 }
 			branches.each do |branch|
-				if branches_diff?(branch.name, branch2) == look_for_merged_branches
-					branch_names.push repo_name + " " + branch.name
+				if branches_diff?(branch, branch2) == look_for_merged_branches
+					branch_names.push repo_name + " " + branch
 				end
 			end
+			Dir.chdir(pwd)
 		end
-		branch_names		
+		branch_names
 	end
 
-	def get_repo repo_name
-		repo_path = File.join(@repo_path, repo_name)
-		Git.open(repo_path)
+	def get_branches
+		branches =`git branch`
+		branches.gsub("*", "").gsub(" ", "").split("\n")
 	end
 
 	def branches_diff? branch1, branch2
