@@ -22,6 +22,10 @@ installed, or if you are not using a UNIX-like system, please get yourself
 together and install it.
 
 
+Clone bare versions of the repos to include in the report into the "repos" directory.
+```cd repos```
+```git clone --bare git@github.com:andwin/gitflow-repo-report-test-repo-1.git```
+
 Tests
 -----
 
