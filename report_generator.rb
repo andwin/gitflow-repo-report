@@ -16,6 +16,8 @@ class ReportGenerator
 		report.master_branches_not_merged_to_develop = get_master_branches_not_merged_to_develop
 		report.release_branches_not_merged_to_develop = get_release_branches_not_merged_to_develop
 		report.release_branches_not_merged_to_master = get_release_branches_not_merged_to_master
+		report.hotfix_branches_not_merged_to_develop = get_hotfix_branches_not_merged_to_develop
+		report.hotfix_branches_not_merged_to_master = get_hotfix_branches_not_merged_to_master
 		report.merged_feature_branches = get_merged_feature_branches
 		report.unmerged_feature_branches = get_unmerged_feature_branches
 
@@ -53,6 +55,14 @@ class ReportGenerator
 
 	def get_release_branches_not_merged_to_master
 		get_branches_with_diffs 'release/', 'master'
+	end
+
+	def get_hotfix_branches_not_merged_to_develop
+		get_branches_with_diffs 'hotfix/', 'develop'
+	end
+
+	def get_hotfix_branches_not_merged_to_master
+		get_branches_with_diffs 'hotfix/', 'master'
 	end
 
 	def get_merged_feature_branches

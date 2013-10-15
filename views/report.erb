@@ -11,6 +11,11 @@
 <%= erb :report_item, :layout => false, locals: {items: @report.release_branches_not_merged_to_master, title: 'Release branches not merged to master'} %>
 
 
+<%= erb :report_item, :layout => false, locals: {items: @report.hotfix_branches_not_merged_to_develop, title: 'Hotfix branches not merged to develop'} %>
+
+<%= erb :report_item, :layout => false, locals: {items: @report.hotfix_branches_not_merged_to_master, title: 'Hotfix branches not merged to master'} %>
+
+
 <%= erb :report_item, :layout => false, locals: {items: @report.merged_feature_branches, title: 'Merged feature branches'} %>
 
 <%= erb :report_item, :layout => false, locals: {items: @report.unmerged_feature_branches, title: 'Unmerged feature branches'} %>
