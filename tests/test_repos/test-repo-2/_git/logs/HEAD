@@ -7,3 +7,5 @@ ac3078cf4b8c8fe208fc269168a149a4ee90d65f ac3078cf4b8c8fe208fc269168a149a4ee90d65
 ac3078cf4b8c8fe208fc269168a149a4ee90d65f 8038ee5e1d3351cbc27343338a4a15e70e5828a0 Anders Windelhed <anders.windelhed@gmail.com> 1380135822 +0200	commit: ...
 8038ee5e1d3351cbc27343338a4a15e70e5828a0 ac3078cf4b8c8fe208fc269168a149a4ee90d65f Anders Windelhed <anders.windelhed@gmail.com> 1380135957 +0200	checkout: moving from release/first-release to develop
 ac3078cf4b8c8fe208fc269168a149a4ee90d65f ac3078cf4b8c8fe208fc269168a149a4ee90d65f Anders Windelhed <anders.windelhed@gmail.com> 1380135996 +0200	checkout: moving from develop to release/second-release
+ac3078cf4b8c8fe208fc269168a149a4ee90d65f 1e635398611b2edc15fa9f64dc18dbfc1ef69eeb andwin <anders.windelhed@gmail.com> 1381862682 +0200	checkout: moving from release/second-release to master
+1e635398611b2edc15fa9f64dc18dbfc1ef69eeb 1e635398611b2edc15fa9f64dc18dbfc1ef69eeb andwin <anders.windelhed@gmail.com> 1381862907 +0200	checkout: moving from master to hotfix/first-hotfix

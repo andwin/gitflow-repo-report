@@ -3,3 +3,24 @@
 	filemode = true
 	bare = false
 	logallrefupdates = true
+[remote "origin"]
+	url = git@github.com:andwin/gitflow-repo-report-test-repo-1.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[branch "develop"]
+	remote = origin
+	merge = refs/heads/develop
+[branch "feature/TICKET-123"]
+	remote = origin
+	merge = refs/heads/feature/TICKET-123
+[branch "feature/TICKET-1337"]
+	remote = origin
+	merge = refs/heads/feature/TICKET-1337
+[branch "release/first-release"]
+	remote = origin
+	merge = refs/heads/release/first-release
+[branch "hotfix/first-hotfix"]
+	remote = origin
+	merge = refs/heads/hotfix/first-hotfix
