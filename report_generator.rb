@@ -29,11 +29,9 @@ class ReportGenerator
 	end
 
 	def update_repos
-		pwd = Dir.pwd
 		get_repo_names.each do |repo_name|
-			Dir.chdir(File.join(@repo_path, repo_name))
-			`git fetch --prune`
-			Dir.chdir(pwd)
+			repo_path = get_repo_path repo_name
+			`git --git-dir=#{repo_path} fetch --prune`
 		end
 	end
 
@@ -43,6 +41,14 @@ class ReportGenerator
 			repo_names.push File.basename repo_path
 		end
 		repo_names.sort
+	end
+
+	def get_repo_path repo_name
+		path = File.join(@repo_path, repo_name, '.git')
+
+		return path if Dir.exists? path
+
+		File.join(@repo_path, repo_name)
 	end
 
 	def get_master_branches_not_merged_to_develop
@@ -75,30 +81,29 @@ class ReportGenerator
 
 	private
 
+
 	def get_branches_with_diffs branch1, branch2, look_for_merged_branches = true
-		pwd = Dir.pwd
 		branch_names = []
 		get_repo_names.each do |repo_name|
-			Dir.chdir(File.join(@repo_path, repo_name))
-			branches = get_branches
-			branches = get_branches.select { |branch| branch.start_with? branch1 }
+			branches = get_branches(repo_name).select { |branch| branch.start_with? branch1 }
 			branches.each do |branch|
-				if branches_diff?(branch, branch2) == look_for_merged_branches
+				if branches_diff?(repo_name, branch, branch2) == look_for_merged_branches
 					branch_names.push repo_name + " " + branch
 				end
 			end
-			Dir.chdir(pwd)
 		end
 		branch_names
 	end
 
-	def get_branches
-		branches =`git branch`
+	def get_branches repo_name
+		repo_path = get_repo_path repo_name
+		branches =`git --git-dir=#{repo_path} branch`
 		branches.gsub("*", "").gsub(" ", "").split("\n")
 	end
 
-	def branches_diff? branch1, branch2
-		commit_count = `git log #{branch1} ^#{branch2} --no-merges --pretty=oneline | wc -l`
+	def branches_diff? repo_name, branch1, branch2
+		repo_path = get_repo_path repo_name
+		commit_count = `git --git-dir=#{repo_path} log #{branch1} ^#{branch2} --no-merges --pretty=oneline | wc -l`
 		commit_count.strip != '0'
 	end
 end
