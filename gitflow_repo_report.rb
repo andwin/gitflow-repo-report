@@ -23,7 +23,9 @@ get '/view/:name/?' do
 end
 
 get '/generate/?' do
-	report_generator = ReportGenerator.new 'repos'
-	report_generator.generate_report 'reports'
-	erb 'report generated! <br /> <a href="/">Click here to view</a>'
+	task = Thread.new { 
+		report_generator = ReportGenerator.new 'repos'
+		report_generator.generate_report 'reports'
+	}
+	erb 'The report is beeing generated...'
 end
