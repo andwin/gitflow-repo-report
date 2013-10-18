@@ -31,7 +31,7 @@ Tests
 
 To run the RSpec tests: ```rspec tests```
 
-To run the Test::Unit tests: ```ruby tests/test_report_generator.rb```
+To run the Test::Unit tests: ```ruby tests/all_tests.rb```
 
 
 Using the application
