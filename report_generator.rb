@@ -1,5 +1,6 @@
 require 'yaml'
 require_relative 'models/report.rb'
+require_relative 'git_output_parser.rb'
 
 class ReportGenerator
 	def initialize(repo_path)
@@ -87,8 +88,9 @@ class ReportGenerator
 		get_repo_names.each do |repo_name|
 			branches = get_branches(repo_name).select { |branch| branch.start_with? branch1 }
 			branches.each do |branch|
-				if branches_diff?(repo_name, branch, branch2) == look_for_merged_branches
-					branch_names.push repo_name + " " + branch
+				branch = get_branch_model(repo_name, branch, branch2)
+				if branch.number_of_unmerged_commits > 0 == look_for_merged_branches
+					branch_names.push branch
 				end
 			end
 		end
@@ -101,9 +103,11 @@ class ReportGenerator
 		branches.gsub("*", "").gsub(" ", "").split("\n")
 	end
 
-	def branches_diff? repo_name, branch1, branch2
+	def get_branch_model repo_name, branch1, branch2
 		repo_path = get_repo_path repo_name
-		commit_count = `git --git-dir=#{repo_path} log #{branch1} ^#{branch2} --no-merges --pretty=oneline | wc -l`
-		commit_count.strip != '0'
+		git_output = `git --git-dir=#{repo_path} log #{branch1} ^#{branch2} --no-merges --pretty=format:"%h%x09%an%x09%ad%x09%s"`
+
+		branch = GitOutputParser.parse_brach_info branch1, repo_name, git_output
+		branch
 	end
 end
