@@ -1,6 +1,6 @@
 <h1>Report generated <%=@report.time.strftime("%Y-%m-%d %H:%M:%S") %></h1>
 
-<%= erb :report_item, :layout => false, locals: {items: @report.repo_names, title: 'Repos in report'} %>
+<%= erb :repos, :layout => false, locals: {repos: @report.repo_names, title: 'Repos in report'} %>
 
 
 <%= erb :unmerged_branches, :layout => false, locals: {branches: @report.master_branches_not_merged_to_develop, title: 'Master branches not merged to develop'} %>
