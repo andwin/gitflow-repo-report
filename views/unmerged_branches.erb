@@ -1,0 +1,6 @@
+<h2><%= branches.count %> <%= title %></h2>
+<ul>
+	<% branches.each do |branch| %>
+		<li><%= branch.repo_name %> <%= branch.name %> <%= branch.number_of_unmerged_commits %></li>
+	<% end %>
+</ul>
