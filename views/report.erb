@@ -16,6 +16,6 @@
 <%= erb :unmerged_branches, :layout => false, locals: {branches: @report.hotfix_branches_not_merged_to_master, title: 'Hotfix branches not merged to master'} %>
 
 
-<%= erb :report_item, :layout => false, locals: {branches: @report.merged_feature_branches, title: 'Merged feature branches'} %>
+<%= erb :merged_branches, :layout => false, locals: {branches: @report.merged_feature_branches, title: 'Merged feature branches'} %>
 
-<%= erb :report_item, :layout => false, locals: {branches: @report.unmerged_feature_branches, title: 'Unmerged feature branches'} %>
+<%= erb :unmerged_branches, :layout => false, locals: {branches: @report.unmerged_feature_branches, title: 'Unmerged feature branches'} %>
