@@ -1,4 +1,6 @@
+require 'date'
 require_relative 'models/branch.rb'
+
 class GitOutputParser
 
 	# Parse output from git log --pretty=format:"%h%x09%an%x09%ad%x09%s"
@@ -13,6 +15,13 @@ class GitOutputParser
 		branch.name = branch_name
 		branch.number_of_unmerged_commits = git_output.lines.count
 		branch.unmerged_commits = git_output.lines.map{ |x| x.strip }
+
+		return branch if git_output.lines[0] == nil
+
+		date_str = git_output.lines[0].split("\t")[2]
+		last_commit_date = Date.parse date_str
+		days_ago = (Date.today - last_commit_date).to_i
+		branch.days_since_last_commit = days_ago
 
 		branch
 	end

@@ -1,6 +1,6 @@
 <h2><%= branches.count %> <%= title %></h2>
 <ul>
 	<% branches.each do |branch| %>
-		<li><%= branch.repo_name %> <%= branch.name %> <%= branch.number_of_unmerged_commits %></li>
+		<li><%= branch.repo_name %> <%= branch.name %> diffing commits: <%= branch.number_of_unmerged_commits %> days since last commit: <%= branch.days_since_last_commit %></li>
 	<% end %>
 </ul>
