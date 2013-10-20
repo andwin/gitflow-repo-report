@@ -22,46 +22,56 @@ class TestReportGenerator < Test::Unit::TestCase
 
 	def test_get_master_branches_not_merged_to_develop
 		branch_names = @report_generator.get_master_branches_not_merged_to_develop
-		assert_equal('test-repo-1 master', branch_names[0])
+		assert_equal('test-repo-1', branch_names[0].repo_name)
+		assert_equal('master', branch_names[0].name)
 		assert_equal(1, branch_names.count)
 	end
 
 	def test_get_release_branches_not_merged_to_develop
 		branch_names = @report_generator.get_release_branches_not_merged_to_develop
-		assert_equal('test-repo-1 release/first-release', branch_names[0])
-		assert_equal('test-repo-2 release/first-release', branch_names[1])
+		assert_equal('test-repo-1', branch_names[0].repo_name)
+		assert_equal('release/first-release', branch_names[0].name)
+		assert_equal('test-repo-2', branch_names[1].repo_name)
+		assert_equal('release/first-release', branch_names[1].name)
 		assert_equal(2, branch_names.count)
 	end
 
 	def test_get_release_branches_not_merged_to_master
 		branch_names = @report_generator.get_release_branches_not_merged_to_master
-		assert_equal('test-repo-1 release/first-release', branch_names[0])
-		assert_equal('test-repo-2 release/first-release', branch_names[1])
-		assert_equal('test-repo-2 release/second-release', branch_names[2])
+		assert_equal('test-repo-1', branch_names[0].repo_name)
+		assert_equal('release/first-release', branch_names[0].name)
+		assert_equal('test-repo-2', branch_names[1].repo_name)
+		assert_equal('release/first-release', branch_names[1].name)
+		assert_equal('test-repo-2', branch_names[2].repo_name)
+		assert_equal('release/second-release', branch_names[2].name)
 		assert_equal(3, branch_names.count)
 	end
 
 	def test_get_hotfix_branches_not_merged_to_develop
 		branch_names = @report_generator.get_hotfix_branches_not_merged_to_develop
-		assert_equal('test-repo-1 hotfix/first-hotfix', branch_names[0])
+		assert_equal('test-repo-1', branch_names[0].repo_name)
+		assert_equal('hotfix/first-hotfix', branch_names[0].name)
 		assert_equal(1, branch_names.count)
 	end
 
 	def test_get_hotfix_branches_not_merged_to_master
 		branch_names = @report_generator.get_hotfix_branches_not_merged_to_master
-		assert_equal('test-repo-1 hotfix/first-hotfix', branch_names[0])
+		assert_equal('test-repo-1', branch_names[0].repo_name)
+		assert_equal('hotfix/first-hotfix', branch_names[0].name)
 		assert_equal(1, branch_names.count)
 	end
 
 	def test_get_merged_feature_branches
 		branch_names = @report_generator.get_merged_feature_branches
-		assert_equal('test-repo-1 feature/TICKET-123', branch_names[0])
+		assert_equal('test-repo-1', branch_names[0].repo_name)
+		assert_equal('feature/TICKET-123', branch_names[0].name)
 		assert_equal(1, branch_names.count)
 	end
 
 	def test_get_unmerged_feature_branches
 		branch_names = @report_generator.get_unmerged_feature_branches
-		assert_equal('test-repo-1 feature/TICKET-1337', branch_names[0])
+		assert_equal('test-repo-1', branch_names[0].repo_name)
+		assert_equal('feature/TICKET-1337', branch_names[0].name)
 		assert_equal(1, branch_names.count)
 	end
 end
