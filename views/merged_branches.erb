@@ -1,6 +1,6 @@
 <h2><%= branches.count %> <%= title %></h2>
 <ul>
 	<% branches.each do |branch| %>
-		<li><%= branch.repo_name %> <%= branch.name %></li>
+		<li><%= branch.repo_name %> <%= branch.name %> days since last commit: <%= branch.days_since_last_commit %></li>
 	<% end %>
 </ul>

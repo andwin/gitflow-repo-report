@@ -73,7 +73,7 @@ class ReportGenerator
 	end
 
 	def get_merged_feature_branches
-		get_branches_with_diffs 'feature/', 'develop', false
+		get_branches_without_diffs 'feature/', 'develop'
 	end
 
 	def get_unmerged_feature_branches
@@ -82,32 +82,54 @@ class ReportGenerator
 
 	private
 
-
-	def get_branches_with_diffs branch1, branch2, look_for_merged_branches = true
-		branch_names = []
+	def get_branches_with_diffs branch1, branch2
+		branches = []
 		get_repo_names.each do |repo_name|
-			branches = get_branches(repo_name).select { |branch| branch.start_with? branch1 }
-			branches.each do |branch|
-				branch = get_branch_model(repo_name, branch, branch2)
-				if branch.number_of_unmerged_commits > 0 == look_for_merged_branches
-					branch_names.push branch
+			branch_names = get_branches(repo_name).select { |branch| branch.start_with? branch1 }
+			branch_names.each do |branch_name|
+				branch = get_branch_model_for_unmerged_branches(repo_name, branch_name, branch2)
+				if branch.number_of_unmerged_commits > 0
+					branches.push branch
 				end
 			end
 		end
-		branch_names
+		branches
+	end
+
+	def get_branches_without_diffs branch1, branch2
+		branches = []
+		get_repo_names.each do |repo_name|
+			branch_names = get_branches(repo_name).select { |branch| branch.start_with? branch1 }
+			branch_names.each do |branch_name|
+				branch = get_branch_model_for_unmerged_branches(repo_name, branch_name, branch2)
+				if branch.number_of_unmerged_commits == 0
+					branch = get_branch_model_for_merged_branches(repo_name, branch_name)
+					branches.push branch
+				end
+			end
+		end
+		branches
 	end
 
 	def get_branches repo_name
 		repo_path = get_repo_path repo_name
-		branches =`git --git-dir=#{repo_path} branch`
-		branches.gsub("*", "").gsub(" ", "").split("\n")
+		branch_names =`git --git-dir=#{repo_path} branch`
+		branch_names.gsub("*", "").gsub(" ", "").split("\n")
 	end
 
-	def get_branch_model repo_name, branch1, branch2
+	def get_branch_model_for_unmerged_branches repo_name, branch1, branch2
 		repo_path = get_repo_path repo_name
 		git_output = `git --git-dir=#{repo_path} log #{branch1} ^#{branch2} --no-merges --pretty=format:"%h%x09%an%x09%ad%x09%s"`
 
 		branch = GitOutputParser.parse_brach_info branch1, repo_name, git_output
+		branch
+	end
+
+	def get_branch_model_for_merged_branches repo_name, branch
+		repo_path = get_repo_path repo_name
+		git_output = `git --git-dir=#{repo_path} log #{branch} -n1 --no-merges --pretty=format:"%h%x09%an%x09%ad%x09%s"`
+
+		branch = GitOutputParser.parse_brach_info branch, repo_name, git_output
 		branch
 	end
 end

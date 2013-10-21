@@ -25,4 +25,19 @@ eos
 		assert_equal '145567e	andwin	Tue Oct 8 22:36:48 2013 +0200	updated documentation', branch.unmerged_commits[0]
 		assert_equal days_ago, branch.days_since_last_commit
 	end
+
+	def test_parse_merged_branch_info
+		git_output = "acb4d39	andwin	Mon Sep 16 15:42:22 2013 +0200	Final fix"
+
+		branch = GitOutputParser.parse_brach_info 'branch', 'repo', git_output
+
+
+		last_commit_date = Date.parse "Mon Sep 16 15:42:22 2013 +0200"
+		days_ago = (Date.today - last_commit_date).to_i
+
+		assert_equal 'branch', branch.name
+		assert_equal 'repo', branch.repo_name
+		assert_equal 1, branch.number_of_unmerged_commits
+		assert_equal days_ago, branch.days_since_last_commit
+	end
 end
