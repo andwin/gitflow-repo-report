@@ -8,6 +8,8 @@ describe 'The gitflow repo report App' do
 	include Rack::Test::Methods
 
 	def app
+		ENV['TEST_REPO_PATH'] = 'test'
+
 		Sinatra::Application
 	end
 

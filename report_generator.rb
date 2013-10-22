@@ -3,8 +3,8 @@ require_relative 'models/report.rb'
 require_relative 'git_output_parser.rb'
 
 class ReportGenerator
-	def initialize(repo_path)
-		@repo_path = repo_path
+	def initialize repos_path
+		@repos_path = repos_path
 	end
 
 	def generate_report reports_path
@@ -38,18 +38,18 @@ class ReportGenerator
 
 	def get_repo_names
 		repo_names = []
-		Dir.glob(File.join(@repo_path, '*')) do |repo_path|
+		Dir.glob(File.join(@repos_path, '*')) do |repo_path|
 			repo_names.push File.basename repo_path
 		end
 		repo_names.sort
 	end
 
 	def get_repo_path repo_name
-		path = File.join(@repo_path, repo_name, '.git')
+		path = File.join(@repos_path, repo_name, '.git')
 
 		return path if Dir.exists? path
 
-		File.join(@repo_path, repo_name)
+		File.join(@repos_path, repo_name)
 	end
 
 	def get_master_branches_not_merged_to_develop
