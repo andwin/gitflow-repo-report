@@ -1,23 +1,28 @@
 require 'yaml'
+require 'sinatra/config_file'
 require_relative 'models/report.rb'
 
 class ReportRepository
-	def self.latest
+	def initialize reports_path
+		@reports_path = reports_path
+	end
+
+	def latest
 		load list.first
 	end
 
-	def self.list
+	def list
 		list = []
-		Dir.glob('reports/*.yaml') do |item|
+		Dir.glob(File.join(@reports_path, '*.yaml')) do |item|
 			next if item == '.' or item == '..'
 			list.push File.basename(item, '.yaml')  
 		end
 		list.sort.reverse
 	end
 
-	def self.load(name)
+	def load(name)
 		return nil if name == nil
 
-		YAML.load(File.read(File.join('reports', name + '.yaml')))
+		YAML.load(File.read(File.join(@reports_path, name + '.yaml')))
 	end
 end
