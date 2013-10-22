@@ -28,8 +28,8 @@ end
 
 get '/generate/?' do
 	task = Thread.new { 
-		report_generator = ReportGenerator.new 'repos'
-		report_generator.generate_report 'reports'
+		report_generator = ReportGenerator.new settings.repos_path
+		report_generator.generate_report settings.reports_path
 	}
 	erb 'The report is beeing generated...'
 end
