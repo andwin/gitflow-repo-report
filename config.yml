@@ -1,0 +1,9 @@
+production:
+  reports_path: 'reports'
+  repos_path: 'repos'
+development:
+  reports_path: 'reports'
+  repos_path: 'repos'
+test:
+  reports_path: 'reports'
+  repos_path: 'repos'
