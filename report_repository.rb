@@ -20,7 +20,7 @@ class ReportRepository
 		list.sort.reverse
 	end
 
-	def load(name)
+	def load name
 		return nil if name == nil
 
 		YAML.load(File.read(File.join(@reports_path, name + '.yaml')))
