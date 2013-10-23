@@ -5,12 +5,12 @@ require_relative 'file_util.rb'
 class TestReportGenerator < Test::Unit::TestCase
 	def setup
 		@file_util = FileUtil.new
-		tmp_repo_path = @file_util.setup_tmp_repo_dir
-		@report_generator = ReportGenerator.new tmp_repo_path
+		@file_util.setup_tmp_dir
+		@report_generator = ReportGenerator.new @file_util.tmp_repos_path
 	end
 
 	def teardown
-		@file_util.remove_tmp_repo_dir
+		@file_util.remove_tmp_dir
 	end
 
 	def test_get_repo_names
