@@ -7,15 +7,29 @@ require 'rack/test'
 describe 'The gitflow repo report App' do
 	include Rack::Test::Methods
 
-	def app
-		ENV['TEST_REPO_PATH'] = 'test'
+	before(:all) do
+		@file_util = FileUtil.new
+		@file_util.setup_tmp_dir
+		@report_generator = ReportGenerator.new @file_util.tmp_repos_path
+	end
 
+	after(:all) do
+		@file_util.remove_tmp_dir
+	end
+
+	def app
 		Sinatra::Application
 	end
 
-	it "loads ok" do
-		get '/'
-		expect(last_response).to be_ok
-		expect(last_response.body).to include('GitFlow report')
+	context 'when starting from the begining' do
+		it 'loads ok' do
+			get '/'
+			expect(last_response).to be_ok
+		end
+
+		it 'has no report on index' do
+			get '/'
+			expect(last_response.body).to include('No reports found!')
+		end
 	end
 end
