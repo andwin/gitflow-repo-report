@@ -2,10 +2,9 @@ ENV['RACK_ENV'] = 'test'
 
 require_relative '../gitflow_repo_report.rb'
 require 'rspec'
-require 'rack/test'
+require 'capybara/rspec'
 
-describe 'The gitflow repo report App' do
-	include Rack::Test::Methods
+describe 'The Gitflow Repo Report App', :type => :feature do
 
 	before(:all) do
 		@file_util = FileUtil.new
@@ -17,19 +16,17 @@ describe 'The gitflow repo report App' do
 		@file_util.remove_tmp_dir
 	end
 
-	def app
-		Sinatra::Application
-	end
+	Capybara.app = Sinatra::Application
 
 	context 'when starting from the begining' do
 		it 'loads ok' do
-			get '/'
-			expect(last_response).to be_ok
+			visit '/'
+			expect(page.status_code).to be 200
 		end
 
 		it 'has no report on index' do
-			get '/'
-			expect(last_response.body).to include('No reports found!')
+			visit '/'
+			expect(page).to have_content 'No reports found!'
 		end
 	end
 end
