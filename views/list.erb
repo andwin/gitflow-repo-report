@@ -1,5 +1,5 @@
 <h1>Generated reports</h1>
-<ul>
+<ul class="report-list">
 	<% @list.each do |report| %>
 		<li><a href="/view/<%= report.sub(' ', '_') %>/"><%= report %></a></li>
 	<% end %>
