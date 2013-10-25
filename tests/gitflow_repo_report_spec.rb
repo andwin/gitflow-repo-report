@@ -28,5 +28,10 @@ describe 'The Gitflow Repo Report App', :type => :feature do
 			visit '/'
 			expect(page).to have_content 'No reports found!'
 		end
+
+		it 'has no reports in list' do
+			visit '/list/'
+			expect(page).to have_selector('.report-list li', count: 0)
+		end
 	end
 end
