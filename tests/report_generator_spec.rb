@@ -3,14 +3,14 @@ require_relative 'file_util.rb'
 
 describe ReportGenerator do
 
-	before(:each) do
+	before(:all) do
 		@file_util = FileUtil.new
 		@file_util.setup_tmp_dir
 		@report_generator = ReportGenerator.new @file_util.tmp_repos_path
 	end
 
-	after(:each) do
-		@file_util.remove_tmp_dir
+	after(:all) do
+		@file_util.cleanup_tmp_dir
 	end
 
 	context "result of call to get_repo_names" do

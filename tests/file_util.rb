@@ -1,19 +1,23 @@
+require 'sinatra'
+require 'sinatra/config_file'
 require 'fileutils'
+
+set :environment, :test
+config_file '../config.yml'
 
 class FileUtil
 
 	attr_reader :tmp_repos_path
 	attr_reader :tmp_reports_path
 
-	def setup_tmp_dir
-		@tmp_path = '_gitflow-repo-report' + Time.now.to_i.to_s + rand(300).to_s.rjust(3, '0')
-		@tmp_path = File.join('/tmp', @tmp_path)
-		@tmp_repos_path = File.join(@tmp_path, 'repos')
-		@tmp_reports_path = File.join(@tmp_path, 'reports')
+	def initialize
+		@tmp_repos_path = Sinatra::Application.settings.repos_path
+		@tmp_reports_path = Sinatra::Application.settings.reports_path
+	end
 
-		FileUtils.mkdir_p(@tmp_path)
-		FileUtils.mkdir_p(@tmp_repos_path)
-		FileUtils.mkdir_p(@tmp_reports_path)
+	def setup_tmp_dir
+		cleanup_tmp_dir
+
 		FileUtils.cp_r(Dir['tests/test_repos/*'], @tmp_repos_path)
 
 		Dir.glob(Dir[File.join(@tmp_repos_path, '*')]) do |repo|
@@ -21,10 +25,8 @@ class FileUtil
 		end
 	end
 
-	def remove_tmp_dir
-		if @tmp_path
-			FileUtils.rm_r(@tmp_path)
-		end
+	def cleanup_tmp_dir
+		FileUtils.rm_rf Dir.glob("#{@tmp_repos_path}/*")
+		FileUtils.rm_rf Dir.glob("#{@tmp_reports_path}/*")
 	end
-
 end

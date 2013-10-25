@@ -10,7 +10,7 @@ class TestReportGenerator < Test::Unit::TestCase
 	end
 
 	def teardown
-		@file_util.remove_tmp_dir
+		@file_util.cleanup_tmp_dir
 	end
 
 	def test_get_repo_names

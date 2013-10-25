@@ -13,7 +13,7 @@ describe 'The Gitflow Repo Report App', :type => :feature do
 	end
 
 	after(:all) do
-		@file_util.remove_tmp_dir
+		@file_util.cleanup_tmp_dir
 	end
 
 	Capybara.app = Sinatra::Application
