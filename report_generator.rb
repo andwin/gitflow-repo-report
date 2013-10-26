@@ -17,8 +17,10 @@ class ReportGenerator
 		report.master_branches_not_merged_to_develop = get_master_branches_not_merged_to_develop
 		report.release_branches_not_merged_to_develop = get_release_branches_not_merged_to_develop
 		report.release_branches_not_merged_to_master = get_release_branches_not_merged_to_master
+		report.release_branches_merged_to_master_and_develop = get_release_branches_merged_to_master_and_develop
 		report.hotfix_branches_not_merged_to_develop = get_hotfix_branches_not_merged_to_develop
 		report.hotfix_branches_not_merged_to_master = get_hotfix_branches_not_merged_to_master
+		report.hotfix_branches_merged_to_master_and_develop = get_hotfix_branches_merged_to_master_and_develop
 		report.merged_feature_branches = get_merged_feature_branches
 		report.unmerged_feature_branches = get_unmerged_feature_branches
 
@@ -64,12 +66,42 @@ class ReportGenerator
 		get_branches_with_diffs 'release/', 'master'
 	end
 
+	def get_release_branches_merged_to_master_and_develop
+		branches_merged_to_master = get_branches_without_diffs 'release/', 'master'
+		branches_merged_to_develop = get_branches_without_diffs 'release/', 'develop'
+
+		merged_branches = []
+		branches_merged_to_master.each do |branch_merged_to_master|
+			branches_merged_to_develop.each do |branch_merged_to_develop|
+				if branch_merged_to_master.name == branch_merged_to_develop.name
+					merged_branches.push branch_merged_to_master
+				end
+			end
+		end
+		merged_branches
+	end
+
 	def get_hotfix_branches_not_merged_to_develop
 		get_branches_with_diffs 'hotfix/', 'develop'
 	end
 
 	def get_hotfix_branches_not_merged_to_master
 		get_branches_with_diffs 'hotfix/', 'master'
+	end
+
+	def get_hotfix_branches_merged_to_master_and_develop
+		branches_merged_to_master = get_branches_without_diffs 'hotfix/', 'master'
+		branches_merged_to_develop = get_branches_without_diffs 'hotfix/', 'develop'
+
+		merged_branches = []
+		branches_merged_to_master.each do |branch_merged_to_master|
+			branches_merged_to_develop.each do |branch_merged_to_develop|
+				if branch_merged_to_master.name == branch_merged_to_develop.name
+					merged_branches.push branch_merged_to_master
+				end
+			end
+		end
+		merged_branches
 	end
 
 	def get_merged_feature_branches

@@ -10,10 +10,14 @@
 
 <%= erb :unmerged_branches, :layout => false, locals: {branches: @report.release_branches_not_merged_to_master, title: 'Release branches not merged to master'} %>
 
+<%= erb :merged_branches, :layout => false, locals: {branches: @report.release_branches_merged_to_master_and_develop, title: 'Release branches merged to master and develop'} %>
+
 
 <%= erb :unmerged_branches, :layout => false, locals: {branches: @report.hotfix_branches_not_merged_to_develop, title: 'Hotfix branches not merged to develop'} %>
 
 <%= erb :unmerged_branches, :layout => false, locals: {branches: @report.hotfix_branches_not_merged_to_master, title: 'Hotfix branches not merged to master'} %>
+
+<%= erb :merged_branches, :layout => false, locals: {branches: @report.hotfix_branches_merged_to_master_and_develop, title: 'Hotfix branches merged to master and develop'} %>
 
 
 <%= erb :merged_branches, :layout => false, locals: {branches: @report.merged_feature_branches, title: 'Merged feature branches'} %>
