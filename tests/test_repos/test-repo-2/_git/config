@@ -21,3 +21,9 @@
 [branch "hotfix/first-hotfix"]
 	remote = origin
 	merge = refs/heads/hotfix/first-hotfix
+[branch "release/third-release"]
+	remote = origin
+	merge = refs/heads/release/third-release
+[branch "hotfix/second-hotfix"]
+	remote = origin
+	merge = refs/heads/hotfix/second-hotfix
