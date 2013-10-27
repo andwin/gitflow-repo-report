@@ -73,8 +73,8 @@ class ReportGenerator
 		merged_branches = []
 		branches_merged_to_master.each do |branch_merged_to_master|
 			branches_merged_to_develop.each do |branch_merged_to_develop|
-				if branch_merged_to_master.name == branch_merged_to_develop.name
-					merged_branches.push branch_merged_to_master
+				if branch_merged_to_master.name == branch_merged_to_develop.name && branch_merged_to_master.repo_name == branch_merged_to_develop.repo_name
+					merged_branches.push branch_merged_to_master.clone
 				end
 			end
 		end
@@ -96,8 +96,8 @@ class ReportGenerator
 		merged_branches = []
 		branches_merged_to_master.each do |branch_merged_to_master|
 			branches_merged_to_develop.each do |branch_merged_to_develop|
-				if branch_merged_to_master.name == branch_merged_to_develop.name
-					merged_branches.push branch_merged_to_master
+				if branch_merged_to_master.name == branch_merged_to_develop.name && branch_merged_to_master.repo_name == branch_merged_to_develop.repo_name
+					merged_branches.push branch_merged_to_master.clone
 				end
 			end
 		end
