@@ -42,16 +42,29 @@ class TestReportGenerator < Test::Unit::TestCase
 		assert_equal('release/first-release', branch_names[0].name)
 		assert_equal('test-repo-2', branch_names[1].repo_name)
 		assert_equal('release/first-release', branch_names[1].name)
-		assert_equal('test-repo-2', branch_names[2].repo_name)
-		assert_equal('release/second-release', branch_names[2].name)
-		assert_equal(3, branch_names.count)
+		assert_equal(2, branch_names.count)
+	end
+
+	def test_get_release_branches_merged_to_master_and_develop
+		branches = @report_generator.get_release_branches_merged_to_master_and_develop
+		assert_equal('test-repo-1', branches[0].repo_name)
+		assert_equal('release/second-release', branches[0].name)
+		assert_equal('test-repo-1', branches[1].repo_name)
+		assert_equal('release/third-release', branches[1].name)
+		assert_equal('test-repo-2', branches[2].repo_name)
+		assert_equal('release/second-release', branches[2].name)
+		assert_equal('test-repo-2', branches[3].repo_name)
+		assert_equal('release/third-release', branches[3].name)
+		assert_equal(4, branches.count)
 	end
 
 	def test_get_hotfix_branches_not_merged_to_develop
 		branch_names = @report_generator.get_hotfix_branches_not_merged_to_develop
 		assert_equal('test-repo-1', branch_names[0].repo_name)
 		assert_equal('hotfix/first-hotfix', branch_names[0].name)
-		assert_equal(1, branch_names.count)
+		assert_equal('test-repo-1', branch_names[1].repo_name)
+		assert_equal('hotfix/second-hotfix', branch_names[1].name)
+		assert_equal(2, branch_names.count)
 	end
 
 	def test_get_hotfix_branches_not_merged_to_master
@@ -59,6 +72,15 @@ class TestReportGenerator < Test::Unit::TestCase
 		assert_equal('test-repo-1', branch_names[0].repo_name)
 		assert_equal('hotfix/first-hotfix', branch_names[0].name)
 		assert_equal(1, branch_names.count)
+	end
+
+	def test_get_hotfix_branches_merged_to_master_and_develop
+		branches = @report_generator.get_hotfix_branches_merged_to_master_and_develop
+		assert_equal('test-repo-2', branches[0].repo_name)
+		assert_equal('hotfix/first-hotfix', branches[0].name)
+		assert_equal('test-repo-2', branches[1].repo_name)
+		assert_equal('hotfix/second-hotfix', branches[1].name)
+		assert_equal(2, branches.count)
 	end
 
 	def test_get_merged_feature_branches
