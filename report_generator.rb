@@ -70,15 +70,7 @@ class ReportGenerator
 		branches_merged_to_master = get_branches_without_diffs 'release/', 'master'
 		branches_merged_to_develop = get_branches_without_diffs 'release/', 'develop'
 
-		merged_branches = []
-		branches_merged_to_master.each do |branch_merged_to_master|
-			branches_merged_to_develop.each do |branch_merged_to_develop|
-				if branch_merged_to_master.name == branch_merged_to_develop.name && branch_merged_to_master.repo_name == branch_merged_to_develop.repo_name
-					merged_branches.push branch_merged_to_master.clone
-				end
-			end
-		end
-		merged_branches
+		return branches_merged_to_master & branches_merged_to_develop
 	end
 
 	def get_hotfix_branches_not_merged_to_develop
@@ -93,15 +85,7 @@ class ReportGenerator
 		branches_merged_to_master = get_branches_without_diffs 'hotfix/', 'master'
 		branches_merged_to_develop = get_branches_without_diffs 'hotfix/', 'develop'
 
-		merged_branches = []
-		branches_merged_to_master.each do |branch_merged_to_master|
-			branches_merged_to_develop.each do |branch_merged_to_develop|
-				if branch_merged_to_master.name == branch_merged_to_develop.name && branch_merged_to_master.repo_name == branch_merged_to_develop.repo_name
-					merged_branches.push branch_merged_to_master.clone
-				end
-			end
-		end
-		merged_branches
+		return branches_merged_to_master & branches_merged_to_develop
 	end
 
 	def get_merged_feature_branches
