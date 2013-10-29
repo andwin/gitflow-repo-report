@@ -3,7 +3,7 @@ require_relative '../models/branch.rb'
 
 class TestGitOutputParser < Test::Unit::TestCase
 
-	def test_branches_are_the_same
+	def test_branches_are_equal
 		branch1 = Branch.new
 		branch1.name = 'feature/TICKET-1'
 		branch1.repo_name = 'repo1'
@@ -15,7 +15,7 @@ class TestGitOutputParser < Test::Unit::TestCase
 		assert_equal branch1, branch2
 	end
 
-	def test_branches_are_not_the_same
+	def test_branches_are_not_equal
 		branch1 = Branch.new
 		branch1.name = 'feature/TICKET-1'
 		branch1.repo_name = 'repo1'
