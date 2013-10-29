@@ -138,16 +138,12 @@ class ReportGenerator
 	def get_branch_model_for_unmerged_branches repo_name, branch1, branch2
 		repo_path = get_repo_path repo_name
 		git_output = `git --git-dir=#{repo_path} log #{branch1} ^#{branch2} --no-merges --pretty=format:"%h%x09%an%x09%ad%x09%s"`
-
-		branch = GitOutputParser.parse_brach_info branch1, repo_name, git_output
-		branch
+		GitOutputParser.parse_brach_info branch1, repo_name, git_output
 	end
 
 	def get_branch_model_for_merged_branches repo_name, branch
 		repo_path = get_repo_path repo_name
 		git_output = `git --git-dir=#{repo_path} log #{branch} -n1 --no-merges --pretty=format:"%h%x09%an%x09%ad%x09%s"`
-
-		branch = GitOutputParser.parse_brach_info branch, repo_name, git_output
-		branch
+		GitOutputParser.parse_brach_info branch, repo_name, git_output
 	end
 end
