@@ -46,6 +46,8 @@ class ReportGenerator
 		repo_names.sort
 	end
 
+	# Return the full path to the git directory in the repo.
+	# If there is no .git repo, it is probably a bare repository and the path to the repo is returned instead.
 	def get_repo_path repo_name
 		path = File.join(@repos_path, repo_name, '.git')
 
