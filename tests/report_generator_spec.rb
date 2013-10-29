@@ -1,16 +1,16 @@
 require_relative '../report_generator.rb'
-require_relative 'file_util.rb'
+require_relative 'test_utils.rb'
 
 describe ReportGenerator do
 
 	before(:all) do
-		@file_util = FileUtil.new
-		@file_util.setup_tmp_dir
-		@report_generator = ReportGenerator.new @file_util.tmp_repos_path
+		@test_utils = TestUtils.new
+		@test_utils.setup_tmp_dir
+		@report_generator = ReportGenerator.new @test_utils.tmp_repos_path
 	end
 
 	after(:all) do
-		@file_util.cleanup_tmp_dir
+		@test_utils.cleanup_tmp_dir
 	end
 
 	context "result of call to get_repo_names" do

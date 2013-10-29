@@ -1,19 +1,20 @@
 ENV['RACK_ENV'] = 'test'
 
-require_relative '../gitflow_repo_report.rb'
 require 'rspec'
 require 'capybara/rspec'
+require_relative 'test_utils.rb'
+require_relative '../gitflow_repo_report.rb'
 
 describe 'The Gitflow Repo Report App', :type => :feature do
 
 	before(:all) do
-		@file_util = FileUtil.new
-		@file_util.setup_tmp_dir
-		@report_generator = ReportGenerator.new @file_util.tmp_repos_path
+		@test_utils = TestUtils.new
+		@test_utils.setup_tmp_dir
+		@report_generator = ReportGenerator.new @test_utils.tmp_repos_path
 	end
 
 	after(:all) do
-		@file_util.cleanup_tmp_dir
+		@test_utils.cleanup_tmp_dir
 	end
 
 	Capybara.app = Sinatra::Application

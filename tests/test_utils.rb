@@ -5,7 +5,7 @@ require 'fileutils'
 set :environment, :test
 config_file '../config.yml'
 
-class FileUtil
+class TestUtils
 
 	attr_reader :tmp_repos_path
 	attr_reader :tmp_reports_path
