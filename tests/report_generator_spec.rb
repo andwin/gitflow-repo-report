@@ -14,17 +14,17 @@ describe ReportGenerator do
 	end
 
 	context "result of call to get_repo_names" do
-		before(:each) do
+		before(:all) do
 			@repos = @report_generator.get_repo_names
 		end
 
 		it "should include test-repo 1 and 2" do
-			expect(@repos).to include('test-repo-1')
-			expect(@repos).to include('test-repo-2')
+			expect(@repos).to include 'test-repo-1'
+			expect(@repos).to include 'test-repo-2'
 		end
 
 		it "should contain exactly 2 repos" do
-			expect(@repos.count).to eq(2)
+			expect(@repos.count).to eq 2
 		end
 	end
 end

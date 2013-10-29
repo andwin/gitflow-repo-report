@@ -32,7 +32,7 @@ describe 'The Gitflow Repo Report App', :type => :feature do
 
 		it 'has no reports in list' do
 			visit '/list/'
-			expect(page).to have_selector('.report-list li', count: 0)
+			expect(page).to have_selector '.report-list li', count: 0
 		end
 
 		it 'generates report when asked to do so' do
@@ -43,7 +43,7 @@ describe 'The Gitflow Repo Report App', :type => :feature do
 			expect(page).to have_no_content 'No reports found!'
 
 			visit '/list/'
-			expect(page).to have_selector('.report-list li', count: 1)
+			expect(page).to have_selector '.report-list li', count: 1
 		end
 
 	end
