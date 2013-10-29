@@ -2,8 +2,8 @@ ENV['RACK_ENV'] = 'test'
 
 require 'rspec'
 require 'capybara/rspec'
-require_relative 'test_utils.rb'
 require_relative '../gitflow_repo_report.rb'
+require_relative 'test_utils.rb'
 
 describe 'The Gitflow Repo Report App', :type => :feature do
 
