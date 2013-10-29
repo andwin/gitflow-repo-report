@@ -57,50 +57,50 @@ class ReportGenerator
 	end
 
 	def get_master_branches_not_merged_to_develop
-		get_branches_with_diffs 'master', 'develop'
+		get_unmerged_branches 'master', 'develop'
 	end
 
 	def get_release_branches_not_merged_to_develop
-		get_branches_with_diffs 'release/', 'develop'
+		get_unmerged_branches 'release/', 'develop'
 	end
 
 	def get_release_branches_not_merged_to_master
-		get_branches_with_diffs 'release/', 'master'
+		get_unmerged_branches 'release/', 'master'
 	end
 
 	def get_release_branches_merged_to_master_and_develop
-		branches_merged_to_master = get_branches_without_diffs 'release/', 'master'
-		branches_merged_to_develop = get_branches_without_diffs 'release/', 'develop'
+		branches_merged_to_master = get_merged_branches 'release/', 'master'
+		branches_merged_to_develop = get_merged_branches 'release/', 'develop'
 
 		return branches_merged_to_master & branches_merged_to_develop
 	end
 
 	def get_hotfix_branches_not_merged_to_develop
-		get_branches_with_diffs 'hotfix/', 'develop'
+		get_unmerged_branches 'hotfix/', 'develop'
 	end
 
 	def get_hotfix_branches_not_merged_to_master
-		get_branches_with_diffs 'hotfix/', 'master'
+		get_unmerged_branches 'hotfix/', 'master'
 	end
 
 	def get_hotfix_branches_merged_to_master_and_develop
-		branches_merged_to_master = get_branches_without_diffs 'hotfix/', 'master'
-		branches_merged_to_develop = get_branches_without_diffs 'hotfix/', 'develop'
+		branches_merged_to_master = get_merged_branches 'hotfix/', 'master'
+		branches_merged_to_develop = get_merged_branches 'hotfix/', 'develop'
 
 		return branches_merged_to_master & branches_merged_to_develop
 	end
 
 	def get_merged_feature_branches
-		get_branches_without_diffs 'feature/', 'develop'
+		get_merged_branches 'feature/', 'develop'
 	end
 
 	def get_unmerged_feature_branches
-		get_branches_with_diffs 'feature/', 'develop'
+		get_unmerged_branches 'feature/', 'develop'
 	end
 
 	private
 
-	def get_branches_with_diffs branch1, branch2
+	def get_unmerged_branches branch1, branch2
 		branches = []
 		get_repo_names.each do |repo_name|
 			branch_names = get_branches(repo_name).select { |branch| branch.start_with? branch1 }
@@ -114,7 +114,7 @@ class ReportGenerator
 		branches
 	end
 
-	def get_branches_without_diffs branch1, branch2
+	def get_merged_branches branch1, branch2
 		branches = []
 		get_repo_names.each do |repo_name|
 			branch_names = get_branches(repo_name).select { |branch| branch.start_with? branch1 }
