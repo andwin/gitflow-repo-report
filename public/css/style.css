@@ -26,3 +26,15 @@ report-section {
 	.branch-list {
 		display: none
 	}
+
+		.branch-list th:nth-child(1) {
+			width:150px;
+		}
+
+		.branch-list th:nth-child(2) {
+			width:450px;
+		}
+
+		.branch-list th:nth-child(3) {
+			width:200px;
+		}
