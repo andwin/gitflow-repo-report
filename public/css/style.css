@@ -1,3 +1,28 @@
-.branches {
-	display: none
+.clear {
+	clear: both;
 }
+
+report-section {
+}
+
+	h2 {
+		float: left;
+	}
+
+	.repo-list li {
+		width: auto;
+		float: left;
+		margin-right: 30px;
+	}
+
+	.toggle-branch-list {
+		float: left;
+		cursor: pointer;
+		margin-top: 26px;
+		margin-left: 10px;
+		color: #00E;
+	}
+
+	.branch-list {
+		display: none
+	}

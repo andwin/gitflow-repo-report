@@ -1,31 +1,35 @@
-<h2><%= branches.count %> <%= title %></h2>
-<% if branches.count > 0 %>
-<div class="show-hide">[Show / hide]</div>
-<table class="branches">
-	<tr>
-		<th>
-			Repo
-		</th>
-		<th>
-			Branch
-		</th>
-		<th>
-			Days since last commit
-		</th>
-	</tr>
+<div class="report-section">
+	<h2><%= branches.count %> <%= title %></h2>
+	<% if branches.count > 0 %>
+	<div class="toggle-branch-list">[Show / hide]</div>
+	<div class="clear"></div>
+	<table class="branch-list">
+		<tr>
+			<th>
+				Repo
+			</th>
+			<th>
+				Branch
+			</th>
+			<th>
+				Days since last commit
+			</th>
+		</tr>
 
-	<% branches.each do |branch| %>
-	<tr>
-		<td>
-			<%= branch.repo_name %>
-		</td>
-		<td>
-			<%= branch.name %>
-		</td>
-		<td>
-			<%= branch.days_since_last_commit %>
-		</td>
-	</tr>
+		<% branches.each do |branch| %>
+		<tr>
+			<td>
+				<%= branch.repo_name %>
+			</td>
+			<td>
+				<%= branch.name %>
+			</td>
+			<td>
+				<%= branch.days_since_last_commit %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
 	<% end %>
-</table>
-<% end %>
+</div>
+<div class="clear"></div>

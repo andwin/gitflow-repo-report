@@ -1,6 +1,10 @@
-<h2><%= repos.count %> <%= title %></h2>
-<ul>
-	<% repos.each do |repo_name| %>
-		<li><%= repo_name %></li>
-	<% end %>
-</ul>
+<div class="report-section">
+	<h2><%= repos.count %> <%= title %></h2>
+	<div class="clear"></div>
+	<ul class="repo-list">
+		<% repos.each do |repo_name| %>
+			<li><%= repo_name %></li>
+		<% end %>
+	</ul>
+</div>
+<div class="clear"></div>

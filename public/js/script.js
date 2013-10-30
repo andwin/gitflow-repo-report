@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$(".show-hide").click(function(){
-		$(this).next(".branches").slideToggle();
+	$(".toggle-branch-list").click(function(){
+		$(this).siblings(".branch-list").slideToggle();
 	});
 });
