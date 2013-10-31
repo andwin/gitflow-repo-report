@@ -58,17 +58,17 @@ report-section {
 	}
 
 	.branch-list {
-		/*display: none*/
+		width: 100%;
 	}
 
 		.branch-list th:nth-child(1) {
-			width:150px;
+			width: 20%;
 		}
 
 		.branch-list th:nth-child(2) {
-			width:450px;
+			width: 60%;
 		}
 
 		.branch-list th:nth-child(3) {
-			width:200px;
+			width: 20%;
 		}
