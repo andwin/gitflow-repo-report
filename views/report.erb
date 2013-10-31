@@ -1,25 +1,48 @@
-<h1>Report generated <%=@report.time.strftime("%Y-%m-%d %H:%M:%S") %></h1>
+<div class="row">
+	<div class="col-md-3">
+		<div class="bs-sidebar hidden-print affix-top" role="complementary">
+			<ul class="nav bs-sidenav">
 
-<%= erb :repos, :layout => false, locals: {repos: @report.repo_names, title: 'Repos in report'} %>
+				<li class="active"><a href="#overview">Overview</a></li>
+				<li><a href="#master-brances-not-merged-to-develop">Master brances not merged to develop</a></li>
+				<li><a href="#release-branches-not-merged-to-develop">Release branches not merged to develop</a></li>
+				<li><a href="#release-branches-not-merged-to-master">Release branches not merged to master</a></li>
+				<li><a href="#release-branches-merged-to-master-and-develop">Release branches merged to master and develop</a></li>
+				<li><a href="#hotfix-branches-not-merged-to-develop">Hotfix branches not merged to develop</a></li>
+				<li><a href="#hotfix-branches-not-merged-to-master">Hotfix branches not merged to master</a></li>
+				<li><a href="#hotfix-branches-merged-to-master-and-develop">Hotfix branches merged to master and develop</a></li>
+				<li><a href="#merged-feature-branches">Merged feature branches</a></li>
+				<li><a href="#unmerged-feature-branches">Unmerged feature branches</a></li>
+        	</ul>
+      	</div>
+	</div>
+	<div class="col-md-9" role="main">
+		<h1 id="overview">Overview</h1>
+		Report generated: <%=@report.time.strftime("%Y-%m-%d %H:%M:%S") %> <br />
+
+		<%= erb :repos, :layout => false, locals: {repos: @report.repo_names, title: 'Repos in report'} %>
 
 
-<%= erb :unmerged_branches, :layout => false, locals: {branches: @report.master_branches_not_merged_to_develop, title: 'Master branches not merged to develop'} %>
+		<%= erb :unmerged_branches, :layout => false, locals: {branches: @report.master_branches_not_merged_to_develop, title: 'Master branches not merged to develop', id: 'master-brances-not-merged-to-develop'} %>
 
 
-<%= erb :unmerged_branches, :layout => false, locals: {branches: @report.release_branches_not_merged_to_develop, title: 'Release branches not merged to develop'} %>
+		<%= erb :unmerged_branches, :layout => false, locals: {branches: @report.release_branches_not_merged_to_develop, title: 'Release branches not merged to develop', id: 'release-branches-not-merged-to-develop'} %>
 
-<%= erb :unmerged_branches, :layout => false, locals: {branches: @report.release_branches_not_merged_to_master, title: 'Release branches not merged to master'} %>
+		<%= erb :unmerged_branches, :layout => false, locals: {branches: @report.release_branches_not_merged_to_master, title: 'Release branches not merged to master', id: 'release-branches-not-merged-to-master'} %>
 
-<%= erb :merged_branches, :layout => false, locals: {branches: @report.release_branches_merged_to_master_and_develop, title: 'Release branches merged to master and develop'} %>
-
-
-<%= erb :unmerged_branches, :layout => false, locals: {branches: @report.hotfix_branches_not_merged_to_develop, title: 'Hotfix branches not merged to develop'} %>
-
-<%= erb :unmerged_branches, :layout => false, locals: {branches: @report.hotfix_branches_not_merged_to_master, title: 'Hotfix branches not merged to master'} %>
-
-<%= erb :merged_branches, :layout => false, locals: {branches: @report.hotfix_branches_merged_to_master_and_develop, title: 'Hotfix branches merged to master and develop'} %>
+		<%= erb :merged_branches, :layout => false, locals: {branches: @report.release_branches_merged_to_master_and_develop, title: 'Release branches merged to master and develop', id: 'release-branches-merged-to-master-and-develop'} %>
 
 
-<%= erb :merged_branches, :layout => false, locals: {branches: @report.merged_feature_branches, title: 'Merged feature branches'} %>
+		<%= erb :unmerged_branches, :layout => false, locals: {branches: @report.hotfix_branches_not_merged_to_develop, title: 'Hotfix branches not merged to develop', id: 'hotfix-branches-not-merged-to-develop'} %>
 
-<%= erb :unmerged_branches, :layout => false, locals: {branches: @report.unmerged_feature_branches, title: 'Unmerged feature branches'} %>
+		<%= erb :unmerged_branches, :layout => false, locals: {branches: @report.hotfix_branches_not_merged_to_master, title: 'Hotfix branches not merged to master', id: 'hotfix-branches-not-merged-to-master'} %>
+
+		<%= erb :merged_branches, :layout => false, locals: {branches: @report.hotfix_branches_merged_to_master_and_develop, title: 'Hotfix branches merged to master and develop', id: 'hotfix-branches-merged-to-master-and-develop'} %>
+
+
+		<%= erb :merged_branches, :layout => false, locals: {branches: @report.merged_feature_branches, title: 'Merged feature branches', id: 'merged-feature-branches'} %>
+
+		<%= erb :unmerged_branches, :layout => false, locals: {branches: @report.unmerged_feature_branches, title: 'Unmerged feature branches', id: 'unmerged-feature-branches'} %>
+	</div>
+</div>
+

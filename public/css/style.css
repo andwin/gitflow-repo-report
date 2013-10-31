@@ -2,17 +2,21 @@
 	clear: both;
 }
 
+
+.repo-list {
+	display: inline;
+	padding-left: 5px;
+}
+	.repo-list li {
+		display: inline;
+		margin-right: 10px;
+	}
+
 report-section {
 }
 
 	h2 {
 		float: left;
-	}
-
-	.repo-list li {
-		width: auto;
-		float: left;
-		margin-right: 30px;
 	}
 
 	.toggle-branch-list {
@@ -24,7 +28,7 @@ report-section {
 	}
 
 	.branch-list {
-		display: none
+		/*display: none*/
 	}
 
 		.branch-list th:nth-child(1) {
