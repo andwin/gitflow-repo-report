@@ -3,15 +3,15 @@
 		<div class="bs-sidebar hidden-print" role="complementary">
 			<ul class="nav bs-sidenav affix-top">
 				<li class="active"><a href="#overview">Overview</a></li>
-				<li><a href="#master-brances-not-merged-to-develop">Master brances not merged to develop</a></li>
-				<li><a href="#release-branches-not-merged-to-develop">Release branches not merged to develop</a></li>
-				<li><a href="#release-branches-not-merged-to-master">Release branches not merged to master</a></li>
-				<li><a href="#release-branches-merged-to-master-and-develop">Release branches merged to master and develop</a></li>
-				<li><a href="#hotfix-branches-not-merged-to-develop">Hotfix branches not merged to develop</a></li>
-				<li><a href="#hotfix-branches-not-merged-to-master">Hotfix branches not merged to master</a></li>
-				<li><a href="#hotfix-branches-merged-to-master-and-develop">Hotfix branches merged to master and develop</a></li>
-				<li><a href="#merged-feature-branches">Merged feature branches</a></li>
-				<li><a href="#unmerged-feature-branches">Unmerged feature branches</a></li>
+				<li><a href="#master-brances-not-merged-to-develop"> <%= @report.master_branches_not_merged_to_develop.count %> Master brances not merged to develop</a></li>
+				<li><a href="#release-branches-not-merged-to-develop"> <%= @report.release_branches_not_merged_to_develop.count %> Release branches not merged to develop</a></li>
+				<li><a href="#release-branches-not-merged-to-master"> <%= @report.release_branches_not_merged_to_master.count %> Release branches not merged to master</a></li>
+				<li><a href="#release-branches-merged-to-master-and-develop"> <%= @report.release_branches_merged_to_master_and_develop.count %> Release branches merged to master and develop</a></li>
+				<li><a href="#hotfix-branches-not-merged-to-develop"> <%= @report.hotfix_branches_not_merged_to_develop.count %> Hotfix branches not merged to develop</a></li>
+				<li><a href="#hotfix-branches-not-merged-to-master"> <%= @report.hotfix_branches_not_merged_to_master.count %> Hotfix branches not merged to master</a></li>
+				<li><a href="#hotfix-branches-merged-to-master-and-develop"> <%= @report.hotfix_branches_merged_to_master_and_develop.count %> Hotfix branches merged to master and develop</a></li>
+				<li><a href="#merged-feature-branches"> <%= @report.merged_feature_branches.count %> Merged feature branches</a></li>
+				<li><a href="#unmerged-feature-branches"> <%= @report.unmerged_feature_branches.count %> Unmerged feature branches</a></li>
         	</ul>
       	</div>
 	</div>
