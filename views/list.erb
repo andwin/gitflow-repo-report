@@ -1,6 +1,10 @@
 <h1>Generated reports</h1>
-<ul class="report-list">
-	<% @list.each do |report| %>
-		<li><a href="/view/<%= report.sub(' ', '_') %>/"><%= report %></a></li>
-	<% end %>
-</ul>
+<p class="lead">These are previously generated reports. Click one of them to view it.</p>
+
+<div class="highlight">
+	<ul class="report-list">
+		<% @list.each do |report| %>
+			<li><a href="/view/<%= report %>/"><%= report.sub( /(.{10})_(.{2})-(.{2})(.*)/, '\1 \2:\3' ) %></a></li>
+		<% end %>
+	</ul>
+</div>
