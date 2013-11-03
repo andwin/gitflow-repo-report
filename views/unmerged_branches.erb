@@ -2,7 +2,7 @@
 	<h2 id="<%= id %>"><%= branches.count %> <%= title %></h2>
 	<% if branches.count > 0 %>
 	<div class="clear"></div>
-	<table class="table-striped branch-list">
+	<table class="table-striped branch-list branch-list-unmerged">
 		<tr>
 			<th>
 				Repo
@@ -12,6 +12,9 @@
 			</th>
 			<th>
 				Days since last commit
+			</th>
+			<th>
+				Unmerged commits
 			</th>
 		</tr>
 
@@ -25,6 +28,9 @@
 			</td>
 			<td>
 				<%= branch.days_since_last_commit %>
+			</td>
+			<td>
+				<%= branch.number_of_unmerged_commits %>
 			</td>
 		</tr>
 		<% end %>

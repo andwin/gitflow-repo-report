@@ -120,14 +120,34 @@ report-section {
 		width: 100%;
 	}
 
-		.branch-list th:nth-child(1) {
-			width: 20%;
+		.branch-list-unmerged {
 		}
+			.branch-list-unmerged th:nth-child(1) {
+				width: 20%;
+			}
 
-		.branch-list th:nth-child(2) {
-			width: 60%;
-		}
+			.branch-list-unmerged th:nth-child(2) {
+				width: 40%;
+			}
 
-		.branch-list th:nth-child(3) {
-			width: 20%;
+			.branch-list-unmerged th:nth-child(3) {
+				width: 20%;
+			}
+
+			.branch-list-unmerged th:nth-child(4) {
+				width: 20%;
+			}
+
+		.branch-list-merged {
 		}
+			.branch-list-merged th:nth-child(1) {
+				width: 20%;
+			}
+
+			.branch-list-merged th:nth-child(2) {
+				width: 40%;
+			}
+
+			.branch-list-merged th:nth-child(3) {
+				width: 40%;
+			}
