@@ -35,4 +35,8 @@ $(function(){
 			}
 		})
 	}, 100)
+
+	$('.view-commits').click(function() {
+		$(this).parent().children('.modal-commits').modal('toggle');
+	});
 });
