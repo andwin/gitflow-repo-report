@@ -8,7 +8,22 @@
 				<h4 class="modal-title" id="myModalLabel"><%= branch.repo_name %> <%= branch.name %></h4>
 			</div>
 			<div class="modal-body">
-				not implemented exception
+
+
+	<% if branch.unmerged_commits.count > 0 %>
+	<div class="clear"></div>
+	<table class="table-striped commit-list">
+		<% branch.unmerged_commits.each do |commit| %>
+		<tr>
+			<td>
+				<%= commit %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+	<% end %>
+
+
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

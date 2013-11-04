@@ -151,3 +151,7 @@ report-section {
 			.branch-list-merged th:nth-child(3) {
 				width: 40%;
 			}
+
+.modal-dialog {
+	width: 900px;
+}
