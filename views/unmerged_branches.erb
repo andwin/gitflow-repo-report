@@ -31,24 +31,7 @@
 			</td>
 			<td>
 				<%= branch.number_of_unmerged_commits %>
-				<a href="#" class="view-commits">View</a>
-				<!-- Modal -->
-				<div class="modal fade modal-commits" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel"><%= branch.repo_name %> <%= branch.name %></h4>
-							</div>
-							<div class="modal-body">
-								not implemented exception
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							</div>
-						</div><!-- /.modal-content -->
-					</div><!-- /.modal-dialog -->
-				</div><!-- /.modal -->
+				<%= erb :dialog_commits, :layout => false, locals: {branch: branch} %>
 			</td>
 		</tr>
 		<% end %>
