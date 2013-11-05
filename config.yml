@@ -5,5 +5,5 @@ development:
   reports_path: 'reports'
   repos_path: 'repos'
 test:
-  reports_path: 'reports'
-  repos_path: 'repos'
+  reports_path: 'tests/tmp/reports'
+  repos_path: 'tests/tmp/repos'
