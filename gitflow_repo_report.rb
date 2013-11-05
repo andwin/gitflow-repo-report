@@ -10,24 +10,24 @@ set :erb, :layout => :'layouts/default'
 reports_repository = ReportRepository.new settings.reports_path
 
 get '/' do
-	@report = reports_repository.latest
-	return erb 'No reports found! <a href="/generate/">Click here to generate</a>' if @report == nil
+  @report = reports_repository.latest
+  return erb 'No reports found! <a href="/generate/">Click here to generate</a>' if @report == nil
 
-	erb :report 
+  erb :report
 end
 
 get '/list/?' do
-	@list = reports_repository.list
-	erb :list
+  @list = reports_repository.list
+  erb :list
 end
 
 get '/view/:name/?' do
-	@report = reports_repository.load(params[:name])
-	erb :report
+  @report = reports_repository.load(params[:name])
+  erb :report
 end
 
 get '/generate/?' do
-	report_generator = ReportGenerator.new settings.repos_path
-	report_generator.generate_report settings.reports_path
-	erb 'The report is generated! <a href="/">Click here to view</a>'
+  report_generator = ReportGenerator.new settings.repos_path
+  report_generator.generate_report settings.reports_path
+  erb 'The report is generated! <a href="/">Click here to view</a>'
 end
