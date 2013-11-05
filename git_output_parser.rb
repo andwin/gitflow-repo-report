@@ -23,9 +23,12 @@ class GitOutputParser
 
   def self.parse_days_since_last_commit git_output_line
 
-    return if git_output_line == nil
+    return if git_output_line.to_s == ''
 
     date_str = git_output_line.split("\t")[2]
+
+    return if date_str.to_s == ''
+
     last_commit_date = Date.parse date_str
     days_ago = (Date.today - last_commit_date).to_i
   end
