@@ -1,5 +1,6 @@
 require 'date'
 require_relative 'models/branch.rb'
+require_relative 'models/commit.rb'
 
 class GitOutputParser
 
@@ -14,12 +15,23 @@ class GitOutputParser
     branch.repo_name = repo_name
     branch.name = branch_name
     branch.number_of_unmerged_commits = git_output.lines.count
-    branch.unmerged_commits = git_output.lines.map{ |x| x.strip }
+    branch.unmerged_commits = git_output.lines.map{ |x| parse_output_line_to_commit_model x }
     branch.days_since_last_commit = parse_days_since_last_commit git_output.lines[0]
     branch
   end
 
   private
+
+  def self.parse_output_line_to_commit_model git_output_line
+    commit = Commit.new
+    parts = git_output_line.split /^(\w*)\t([^\t]*)\t([^\t]*)\t(.*)$/
+
+    commit.id = parts[1]
+    commit.author = parts[2]
+    commit.date = Date.parse parts[3]
+    commit.message = parts[4]
+    commit
+  end
 
   def self.parse_days_since_last_commit git_output_line
 

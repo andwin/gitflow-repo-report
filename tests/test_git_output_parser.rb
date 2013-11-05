@@ -1,6 +1,7 @@
 require 'test/unit'
 require_relative '../git_output_parser.rb'
 require_relative '../models/branch.rb'
+require_relative '../models/commit.rb'
 
 class TestGitOutputParser < Test::Unit::TestCase
   def test_parse_brach_info
@@ -22,7 +23,14 @@ eos
     assert_equal 4, branch.number_of_unmerged_commits
     assert_not_nil branch.unmerged_commits
     assert_equal 4, branch.unmerged_commits.count
-    assert_equal '145567e	andwin	Tue Oct 8 22:36:48 2013 +0200	updated documentation', branch.unmerged_commits[0]
+
+    last_commit = branch.unmerged_commits[0]
+    assert_instance_of Commit, last_commit
+    assert_equal '145567e', last_commit.id
+    assert_equal 'andwin', last_commit.author
+    assert_equal last_commit_date, last_commit.date
+    assert_equal 'updated documentation', last_commit.message
+
     assert_equal days_ago, branch.days_since_last_commit
   end
 end
