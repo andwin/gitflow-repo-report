@@ -13,10 +13,22 @@
   <% if branch.unmerged_commits.count > 0 %>
   <div class="clear"></div>
   <table class="table-striped commit-list">
+    <tr>
+      <th>Id</th><th>Author</th><th>Date</th><th>Message</th>
+    </tr>
     <% branch.unmerged_commits.each do |commit| %>
     <tr>
       <td>
-        <%= commit %>
+        <%= commit.id %>
+      </td>
+      <td>
+        <%= commit.author %>
+      </td>
+      <td>
+        <%= commit.date %>
+      </td>
+      <td>
+        <%= commit.message %>
       </td>
     </tr>
     <% end %>
