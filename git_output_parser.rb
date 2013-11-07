@@ -17,7 +17,11 @@ class GitOutputParser
     branch.name = branch_name
     branch.number_of_unmerged_commits = git_output.lines.count
     branch.unmerged_commits = git_output.lines.map{ |x| parse_output_line_to_commit_model x }
-    branch.days_since_last_commit = parse_days_since_last_commit git_output.lines[0]
+
+    if branch.unmerged_commits[0]
+      branch.days_since_last_commit = parse_days_since_last_commit branch.unmerged_commits[0].time
+    end
+
     branch
   end
 
@@ -34,15 +38,7 @@ class GitOutputParser
     commit
   end
 
-  def self.parse_days_since_last_commit git_output_line
-
-    return if git_output_line.to_s == ''
-
-    date_str = git_output_line.split("\t")[2]
-
-    return if date_str.to_s == ''
-
-    last_commit_date = Date.parse date_str
-    days_ago = (Date.today - last_commit_date).to_i
+  def self.parse_days_since_last_commit last_commit_time
+    days_ago = (Time.now - last_commit_time).to_i / 86400
   end
 end

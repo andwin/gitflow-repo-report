@@ -1,5 +1,4 @@
 require 'test/unit'
-require 'date'
 require 'time'
 require_relative '../git_output_parser.rb'
 require_relative '../models/branch.rb'
@@ -19,8 +18,8 @@ eos
 
     branch = GitOutputParser.parse_brach_info 'branch', 'repo', git_output
 
-    last_commit_date = Date.parse time_str
-    days_ago = (Date.today - last_commit_date).to_i
+    last_commit_time = Time.parse time_str
+    days_ago = (Time.now - last_commit_time).to_i / 86400
 
     assert_equal 'branch', branch.name
     assert_equal 'repo', branch.repo_name
@@ -28,7 +27,6 @@ eos
     assert_not_nil branch.unmerged_commits
     assert_equal 4, branch.unmerged_commits.count
 
-    last_commit_time = Time.parse time_str
     last_commit = branch.unmerged_commits[0]
 
     assert_instance_of Commit, last_commit
