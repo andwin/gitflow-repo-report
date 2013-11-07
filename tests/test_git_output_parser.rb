@@ -1,4 +1,6 @@
 require 'test/unit'
+require 'date'
+require 'time'
 require_relative '../git_output_parser.rb'
 require_relative '../models/branch.rb'
 require_relative '../models/commit.rb'
@@ -13,9 +15,11 @@ class TestGitOutputParser < Test::Unit::TestCase
 445567e	andwin	Tue Oct 5 22:33:48 2013 +0200	Initial commit
 eos
 
+    time_str = 'Tue Oct 8 22:36:48 2013 +0200'
+
     branch = GitOutputParser.parse_brach_info 'branch', 'repo', git_output
 
-    last_commit_date = Date.parse git_output.lines[0]
+    last_commit_date = Date.parse time_str
     days_ago = (Date.today - last_commit_date).to_i
 
     assert_equal 'branch', branch.name
@@ -24,11 +28,13 @@ eos
     assert_not_nil branch.unmerged_commits
     assert_equal 4, branch.unmerged_commits.count
 
+    last_commit_time = Time.parse time_str
     last_commit = branch.unmerged_commits[0]
+
     assert_instance_of Commit, last_commit
     assert_equal '145567e', last_commit.id
     assert_equal 'andwin', last_commit.author
-    assert_equal last_commit_date, last_commit.date
+    assert_equal last_commit_time, last_commit.time
     assert_equal 'updated documentation', last_commit.message
 
     assert_equal days_ago, branch.days_since_last_commit

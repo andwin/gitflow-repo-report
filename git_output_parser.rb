@@ -1,4 +1,5 @@
 require 'date'
+require 'time'
 require_relative 'models/branch.rb'
 require_relative 'models/commit.rb'
 
@@ -28,7 +29,7 @@ class GitOutputParser
 
     commit.id = parts[1]
     commit.author = parts[2]
-    commit.date = Date.parse parts[3]
+    commit.time = Time.parse parts[3]
     commit.message = parts[4]
     commit
   end

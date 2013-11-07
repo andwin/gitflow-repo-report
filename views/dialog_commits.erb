@@ -25,7 +25,7 @@
         <%= commit.author %>
       </td>
       <td>
-        <%= commit.date %>
+        <%= commit.time.strftime "%F %R" %>
       </td>
       <td>
         <%= commit.message %>
