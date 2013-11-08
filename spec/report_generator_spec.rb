@@ -43,4 +43,24 @@ describe ReportGenerator do
       expect(@branches[0].repo_name).to eq 'test-repo-1'
     end
   end
+
+  context 'get release branches not merged to develop' do
+    before(:all) do
+      @branches = @report_generator.get_release_branches_not_merged_to_develop
+    end
+
+    it 'should contain 2 branches' do
+      expect(@branches.count).to eq 2
+    end
+
+    it 'should include the branch release/first-release from the repo test-repo-1' do
+      expect(@branches[0].repo_name).to eq 'test-repo-1'
+      expect(@branches[0].name).to eq 'release/first-release'
+    end
+
+    it 'should include the branch release/first-release from the repo test-repo-1' do
+      expect(@branches[1].repo_name).to eq 'test-repo-2'
+      expect(@branches[1].name).to eq 'release/first-release'
+    end
+  end
 end
