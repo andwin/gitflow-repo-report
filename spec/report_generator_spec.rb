@@ -26,10 +26,9 @@ describe ReportGenerator do
       expect(@repos).to include 'test-repo-1'
       expect(@repos).to include 'test-repo-2'
     end
-
   end
 
-  context 'get master branches not merged to develop' do
+  context 'result of call to get_master_branches_not_merged_to_develop' do
     before(:all) do
       @branches = @report_generator.get_master_branches_not_merged_to_develop
     end
@@ -44,7 +43,7 @@ describe ReportGenerator do
     end
   end
 
-  context 'get release branches not merged to develop' do
+  context 'result of call to get_release_branches_not_merged_to_develop' do
     before(:all) do
       @branches = @report_generator.get_release_branches_not_merged_to_develop
     end
