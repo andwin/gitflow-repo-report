@@ -13,20 +13,6 @@ class TestReportGenerator < Test::Unit::TestCase
     @test_utils.cleanup_tmp_dir
   end
 
-  def test_get_repo_names
-    repos = @report_generator.get_repo_names
-    assert_equal 'test-repo-1', repos[0]
-    assert_equal 'test-repo-2', repos[1]
-    assert_equal 2, repos.count
-  end
-
-  def test_get_master_branches_not_merged_to_develop
-    branches = @report_generator.get_master_branches_not_merged_to_develop
-    assert_equal 'test-repo-1', branches[0].repo_name
-    assert_equal 'master', branches[0].name
-    assert_equal 1, branches.count
-  end
-
   def test_get_release_branches_not_merged_to_develop
     branches = @report_generator.get_release_branches_not_merged_to_develop
     assert_equal 'test-repo-1', branches[0].repo_name
