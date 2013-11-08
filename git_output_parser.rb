@@ -11,7 +11,7 @@ class GitOutputParser
   # 245567e	andwin	Tue Oct 7 22:35:48 2013 +0200	critical bugfix
   # 345567e	andwin	Tue Oct 6 22:34:48 2013 +0200	added important feature
   # 445567e	andwin	Tue Oct 5 22:33:48 2013 +0200	Initial commit
-  def self.parse_brach_info branch_name, repo_name, git_output
+  def self.parse_branch_info branch_name, repo_name, git_output
     branch = Branch.new
     branch.repo_name = repo_name
     branch.name = branch_name

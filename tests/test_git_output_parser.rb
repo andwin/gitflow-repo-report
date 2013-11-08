@@ -16,7 +16,7 @@ eos
 
     time_str = 'Tue Oct 8 22:36:48 2013 +0200'
 
-    branch = GitOutputParser.parse_brach_info 'branch', 'repo', git_output
+    branch = GitOutputParser.parse_branch_info 'branch', 'repo', git_output
 
     last_commit_time = Time.parse time_str
     days_ago = (Time.now - last_commit_time).to_i / 86400
