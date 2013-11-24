@@ -1,11 +1,11 @@
-require 'test/unit'
+require 'rspec'
 require 'time'
 require_relative '../git_output_parser.rb'
 require_relative '../models/branch.rb'
 require_relative '../models/commit.rb'
 
-class TestGitOutputParser < Test::Unit::TestCase
-  def test_parse_brach_info
+describe GitOutputParser do
+  it 'parses branch info correctly' do
 
     git_output = <<-eos
 145567e	andwin	Tue Oct 8 22:36:48 2013 +0200	updated documentation
@@ -21,20 +21,20 @@ eos
     last_commit_time = Time.parse time_str
     days_ago = (Time.now - last_commit_time).to_i / 86400
 
-    assert_equal 'branch', branch.name
-    assert_equal 'repo', branch.repo_name
-    assert_equal 4, branch.number_of_unmerged_commits
-    assert_not_nil branch.unmerged_commits
-    assert_equal 4, branch.unmerged_commits.count
+    branch.name.should eq 'branch'
+    branch.repo_name.should eq 'repo'
+    branch.number_of_unmerged_commits.should eq 4
+    branch.unmerged_commits.should_not be_nil
+    branch.unmerged_commits.count.should eq 4
 
     last_commit = branch.unmerged_commits[0]
 
-    assert_instance_of Commit, last_commit
-    assert_equal '145567e', last_commit.id
-    assert_equal 'andwin', last_commit.author
-    assert_equal last_commit_time, last_commit.time
-    assert_equal 'updated documentation', last_commit.message
+    last_commit.should be_an_instance_of Commit
+    last_commit.id.should eq '145567e'
+    last_commit.author.should eq 'andwin'
+    last_commit.time.should eq last_commit_time
+    last_commit.message.should eq 'updated documentation'
 
-    assert_equal days_ago, branch.days_since_last_commit
+    branch.days_since_last_commit.should equal days_ago
   end
 end
