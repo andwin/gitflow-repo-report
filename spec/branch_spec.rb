@@ -1,9 +1,9 @@
-require 'test/unit'
-require_relative '../models/branch.rb'
+require 'rspec'
+require_relative '../report_generator.rb'
+require_relative 'test_utils.rb'
 
-class TestGitOutputParser < Test::Unit::TestCase
-
-  def test_branches_are_equal
+describe Branch do
+  it 'should be equal' do
     branch1 = Branch.new
     branch1.name = 'feature/TICKET-1'
     branch1.repo_name = 'repo1'
@@ -12,10 +12,10 @@ class TestGitOutputParser < Test::Unit::TestCase
     branch2.name = 'feature/TICKET-1'
     branch2.repo_name = 'repo1'
 
-    assert_equal branch1, branch2
+    branch1.should eq branch2
   end
 
-  def test_branches_are_not_equal
+  it 'should not be equal' do
     branch1 = Branch.new
     branch1.name = 'feature/TICKET-1'
     branch1.repo_name = 'repo1'
@@ -24,10 +24,10 @@ class TestGitOutputParser < Test::Unit::TestCase
     branch2.name = 'feature/TICKET-1'
     branch2.repo_name = 'repo2'
 
-    assert_not_equal branch1, branch2
+    branch1.should_not eq branch2
   end
 
-  def test_compare_arrays_of_branches
+  it 'should work with the AND operator' do
     branch_a1 = Branch.new
     branch_a1.name = 'feature/TICKET-1'
     branch_a1.repo_name = 'repo1'
@@ -49,8 +49,9 @@ class TestGitOutputParser < Test::Unit::TestCase
 
     common = branches1 & branches2
 
-    assert_equal 1, common.count
-    assert_equal 'feature/TICKET-1', common[0].name
-    assert_equal 'repo1', common[0].repo_name
+    common.count.should eq 1
+    common[0].name.should eq 'feature/TICKET-1'
+    common[0].repo_name.should eq 'repo1'
   end
+
 end
