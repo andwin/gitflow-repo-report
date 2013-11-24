@@ -1,3 +1,4 @@
+require 'rspec'
 require_relative '../report_generator.rb'
 require_relative 'test_utils.rb'
 
