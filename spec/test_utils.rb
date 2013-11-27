@@ -18,7 +18,7 @@ class TestUtils
   def setup_tmp_dir
     cleanup_tmp_dir
 
-    FileUtils.cp_r(Dir['tests/test_repos/*'], @tmp_repos_path)
+    FileUtils.cp_r(Dir['spec/test_repos/*'], @tmp_repos_path)
 
     Dir.glob(Dir[File.join(@tmp_repos_path, '*')]) do |repo|
       FileUtils.mv(File.join(repo, '_git'), File.join(repo, '.git'))
