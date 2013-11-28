@@ -5,7 +5,6 @@ require_relative 'report_repository.rb'
 require_relative 'report_generator.rb'
 
 config_file 'config.yml'
-set :erb, :layout => :'layouts/default'
 
 reports_repository = ReportRepository.new settings.reports_path
 
