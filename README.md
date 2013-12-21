@@ -1,44 +1,25 @@
 gitflow-repo-report
 ===================
 
-A simple and neat way to visualise which branches are active, which should be
-merged, etc. Useful if you have a lot of git repositories using git flow
-and you want to avoid forgetting about feature branches and similar.
+A simple and neat way to visualize which branches are active, which should be merged, etc. Useful if you're using Git Flow and have a lot of repositories with many branches.
 
+The report displays which branches are merged and can be deleted and which are unmerged. It shows you when the last commit was made on each branch and a list of any unmerged commits. Never forget to merge a branch again, and get rid of all of those old branches!
 
 Getting started
 ---------------
 
-* Just run ```bundle install```
+* Clone this repository ```git clone https://github.com/andwin/gitflow-repo-report```
+* Install dependencies ```bundle install```
 * ```ruby gitflow-repo-report.rb``` launches the application, typically at localhost:4567
-* OR, if you don't want to restart the server manually you can install shotgun
-using ```gem install shotgun``` and run the application
-with ```shotgun --port 4567 gitflow-repo-report.rb```
 
-The "bundle install" command will hopefully install everything you need,
-such as Sinatra (see http://www.sinatrarb.com/intro.html), Ruby/git, rspec
-and their dependencies, using bundler for Ruby. If you do not have Ruby
-installed, or if you are not using a UNIX-like system, please get yourself
-together and install it.
+Clone the repositories you want to include in the report to the “repos” directory with the ```--mirror``` flag.
 
-
-Clone bare versions of the repos to include in the report into the "repos" directory.
 ```cd repos```
-```git clone --bare git@github.com:andwin/gitflow-repo-report-test-repo-1.git```
+```git clone --mirror git@github.com:andwin/gitflow-repo-report-test-repo-1.git```
+
+Clone as many repositories as you like to the repos directory
 
 Tests
 -----
 
-To run the RSpec tests: ```rspec tests```
-
-To run the Test::Unit tests: ```ruby tests/all_tests.rb```
-
-
-Using the application
----------------------
-
-For an updated list of the functionality and available routes, see the source code.
-
-Assuming that you are running the site locally at port 4567, you can list
-the branches of a local repo in ~/dev/name-of-repository by entering
-http://localhost:4567/view/name-of-repository into your browser.
+All the tests are written in RSpec. To run them, execute: ```rspec```
