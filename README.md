@@ -12,12 +12,14 @@ Getting started
 * Install dependencies ```bundle install```
 * ```ruby gitflow-repo-report.rb``` launches the application, typically at localhost:4567
 
-Clone the repositories you want to include in the report to the “repos” directory with the ```--mirror``` flag.
+Clone all the repositories you want to include in the report to the "repos" directory with the ```--mirror``` flag.
 
 ```cd repos```
-```git clone --mirror git@github.com:andwin/gitflow-repo-report-test-repo-1.git```
+```git clone --mirror git@github.com:andwin/gitflow-repo-report-test-repo-1.git test-repo-1```
 
-Clone as many repositories as you like to the repos directory
+Here are two example repos you can use:
+* ```github.com:andwin/gitflow-repo-report-test-repo-1.git```
+* ```github.com:andwin/gitflow-repo-report-test-repo-2.git```
 
 Tests
 -----
