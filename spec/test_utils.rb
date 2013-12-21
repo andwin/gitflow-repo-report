@@ -19,7 +19,7 @@ class TestUtils
   end
 
   def cleanup_tmp_dir
-    FileUtils.rm_rf Dir.glob("#{@tmp_repos_path}/*")
-    FileUtils.rm_rf Dir.glob("#{@tmp_reports_path}/*")
+    FileUtils.rm_rf Dir.glob File.join(@tmp_repos_path, '*')
+    FileUtils.rm_rf Dir.glob File.join(@tmp_reports_path, '*')
   end
 end
