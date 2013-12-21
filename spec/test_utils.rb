@@ -4,8 +4,8 @@ class TestUtils
   attr_reader :tmp_reports_path
 
   def initialize
-    @tmp_repos_path = 'spec/tmp/repos'
-    @tmp_reports_path = 'spec/tmp/reports'
+    @tmp_repos_path = Sinatra::Application.settings.repos_path
+    @tmp_reports_path = Sinatra::Application.settings.reports_path
   end
 
   def setup_tmp_dir
