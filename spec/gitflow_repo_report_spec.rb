@@ -1,19 +1,17 @@
-ENV['RACK_ENV'] = 'test'
-
 require 'rspec'
 require 'capybara/rspec'
+require 'spec_helper'
+require 'test_utils'
 require_relative '../gitflow_repo_report.rb'
-require_relative 'test_utils.rb'
 
 describe 'The Gitflow Repo Report App', :type => :feature do
-
-  before(:all) do
+  before(:each) do
     @test_utils = TestUtils.new
     @test_utils.setup_tmp_dir
     @report_generator = ReportGenerator.new @test_utils.tmp_repos_path
   end
 
-  after(:all) do
+  after(:each) do
     @test_utils.cleanup_tmp_dir
   end
 
@@ -45,6 +43,5 @@ describe 'The Gitflow Repo Report App', :type => :feature do
       visit '/list/'
       expect(page).to have_selector '.report-list li', count: 1
     end
-
   end
 end

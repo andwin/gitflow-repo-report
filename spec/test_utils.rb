@@ -1,18 +1,11 @@
-require 'sinatra'
-require 'sinatra/config_file'
-require 'fileutils'
-
-set :environment, :test
-config_file '../config.yml'
-
 class TestUtils
 
   attr_reader :tmp_repos_path
   attr_reader :tmp_reports_path
 
   def initialize
-    @tmp_repos_path = Sinatra::Application.settings.repos_path
-    @tmp_reports_path = Sinatra::Application.settings.reports_path
+    @tmp_repos_path = 'spec/tmp/repos'
+    @tmp_reports_path = 'spec/tmp/reports'
   end
 
   def setup_tmp_dir
