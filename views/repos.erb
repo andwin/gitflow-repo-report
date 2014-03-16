@@ -1,7 +1,9 @@
 <%= repos.count %> <%= title %>:
 <ul class="repo-list">
   <% repos.each do |repo_name| %>
-    <li><%= repo_name %></li>
+    <li>
+      <%= erb :repo_name, :layout => false, locals: {name: repo_name} %>
+    </li>
   <% end %>
 </ul>
 <div class="clear"></div>

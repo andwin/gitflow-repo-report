@@ -21,7 +21,7 @@
     <% branches.each do |branch| %>
     <tr>
       <td>
-        <%= branch.repo_name %>
+        <%= erb :repo_name, :layout => false, locals: {name: branch.repo_name} %>
       </td>
       <td>
         <%= branch.name %>
