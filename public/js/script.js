@@ -40,3 +40,7 @@ $(function(){
     $(this).parent().children('.modal-commits').modal('toggle');
   });
 });
+
+$(document).ready(function() { 
+  $(".tablesorter").tablesorter();
+}); 
