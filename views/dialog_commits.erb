@@ -12,27 +12,29 @@
 
   <% if branch.unmerged_commits.count > 0 %>
   <div class="clear"></div>
-  <table class="table-striped commit-list">
-    <tr>
-      <th>Id</th><th>Author</th><th>Date</th><th>Message</th>
-    </tr>
-    <% branch.unmerged_commits.each do |commit| %>
-    <tr>
-      <td>
-        <%= commit.id %>
-      </td>
-      <td>
-        <%= commit.author %>
-      </td>
-      <td>
-        <%= commit.time.strftime "%F %R" %>
-      </td>
-      <td>
-        <%= commit.message %>
-      </td>
-    </tr>
-    <% end %>
-  </table>
+  <div class="commit-list-holder">
+    <table class="table-striped commit-list">
+      <tr>
+        <th>Id</th><th>Author</th><th>Date</th><th>Message</th>
+      </tr>
+      <% branch.unmerged_commits.each do |commit| %>
+      <tr>
+        <td>
+          <%= commit.id %>
+        </td>
+        <td>
+          <%= commit.author %>
+        </td>
+        <td>
+          <%= commit.time.strftime "%F %R" %>
+        </td>
+        <td>
+          <%= commit.message %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
   <% end %>
 
 

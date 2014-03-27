@@ -152,23 +152,27 @@ report-section {
         width: 40%;
       }
 
-    .commit-list {
+    .commit-list-holder {
+      overflow: auto;
     }
-      .commit-list th:nth-child(1) {
-        width: 10%;
-      }
 
-      .commit-list th:nth-child(2) {
-        width: 15%;
+      .commit-list {
       }
+        .commit-list th:nth-child(1) {
+          width: 10%;
+        }
 
-      .commit-list th:nth-child(3) {
-        width: 16%;
-      }
+        .commit-list th:nth-child(2) {
+          width: 15%;
+        }
 
-      .commit-list th:nth-child(4) {
-        width: 60%;
-      }
+        .commit-list th:nth-child(3) {
+          width: 16%;
+        }
+
+        .commit-list th:nth-child(4) {
+          width: 60%;
+        }
 
 .modal-dialog {
   width: 900px;
