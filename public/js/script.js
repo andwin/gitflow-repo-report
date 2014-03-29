@@ -42,5 +42,5 @@ $(function(){
 });
 
 $(document).ready(function() { 
-  $(".tablesorter").tablesorter();
+  $(".tablesorter").tablesorter({sortList: [[0,0]]});
 }); 
