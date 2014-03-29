@@ -127,11 +127,11 @@ report-section {
       }
 
       .branch-list-unmerged th:nth-child(2) {
-        width: 40%;
+        width: 35%;
       }
 
       .branch-list-unmerged th:nth-child(3) {
-        width: 20%;
+        width: 25%;
       }
 
       .branch-list-unmerged th:nth-child(4) {
@@ -145,11 +145,11 @@ report-section {
       }
 
       .branch-list-merged th:nth-child(2) {
-        width: 40%;
+        width: 35%;
       }
 
       .branch-list-merged th:nth-child(3) {
-        width: 40%;
+        width: 45%;
       }
 
     .commit-list-holder {
@@ -181,6 +181,25 @@ report-section {
           white-space: nowrap;
           padding-right: 10px;
         }
+
+.tablesorter {  
+}
+  .tablesorter-header {
+    background-image: url(../img/sort.gif);
+    cursor: pointer;
+    font-weight: bold;
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 20px;
+  }
+
+  .tablesorter-headerDesc { 
+      background-image: url(../img/sort_desc.gif); 
+  } 
+
+  .tablesorter-headerAsc { 
+      background-image: url(../img/sort_asc.gif); 
+  } 
 
 .modal-dialog {
   width: 900px;
