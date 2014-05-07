@@ -66,4 +66,26 @@ describe Report do
 
     report.branch_with_most_unmerged_commits.should eq 'repo1 feature/ID-123 4'
   end
+
+  it 'finds the brach with most days since last commit' do
+    branch1 = Branch.new
+    branch1.repo_name = 'repo1'
+    branch1.name = 'feature/ID-123'
+    branch1.days_since_last_commit = 14
+
+    branch2 = Branch.new
+    branch2.repo_name = 'repo2'
+    branch2.name = 'release/2014-04-04'
+    branch2.days_since_last_commit = 6
+
+    report = Report.new
+    report.release_branches_not_merged_to_develop = []
+    report.release_branches_not_merged_to_develop.push branch1
+    report.release_branches_not_merged_to_develop.push branch2
+
+    report.release_branches_not_merged_to_master = []
+    report.release_branches_not_merged_to_master.push branch1
+
+    report.branch_with_most_days_since_last_commit.should eq 'repo1 feature/ID-123 14'
+  end
 end

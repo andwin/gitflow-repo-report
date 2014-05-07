@@ -50,6 +50,20 @@ class Report
     result
   end
 
+  def branch_with_most_days_since_last_commit
+    top_number_of_days_since_last_commit = 0
+    result = ''
+
+    all_branches.each do |branch|
+      if branch.days_since_last_commit > top_number_of_days_since_last_commit
+        top_number_of_days_since_last_commit = branch.days_since_last_commit
+        result = branch.repo_name + ' ' + branch.name + ' ' + branch.days_since_last_commit.to_s
+      end
+    end
+
+    result
+  end
+
   private
 
   def all_branches
