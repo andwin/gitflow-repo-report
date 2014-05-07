@@ -36,8 +36,22 @@ class Report
     total_number_of_unmerged_commits
   end
 
+  def branch_with_most_unmerged_commits
+    top_number_of_unmerged_commits = 0
+    result = ''
+
+    all_branches.each do |branch|
+      if branch.number_of_unmerged_commits > top_number_of_unmerged_commits
+        top_number_of_unmerged_commits = branch.number_of_unmerged_commits
+        result = branch.repo_name + ' ' + branch.name + ' ' + branch.number_of_unmerged_commits.to_s
+      end
+    end
+
+    result
+  end
+
   private
-  
+
   def all_branches
     master_branches_not_merged_to_develop |
     release_branches_not_merged_to_develop |
