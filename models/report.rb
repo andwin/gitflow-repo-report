@@ -10,4 +10,16 @@ class Report
   attr_accessor :hotfix_branches_merged_to_master_and_develop
   attr_accessor :merged_feature_branches
   attr_accessor :unmerged_feature_branches
+
+  def initialize
+    @master_branches_not_merged_to_develop = []
+    @release_branches_not_merged_to_develop = []
+    @release_branches_not_merged_to_master = []
+    @release_branches_merged_to_master_and_develop = []
+    @hotfix_branches_not_merged_to_develop = []
+    @hotfix_branches_not_merged_to_master = []
+    @hotfix_branches_merged_to_master_and_develop = []
+    @merged_feature_branches = []
+    @unmerged_feature_branches = []
+  end
 end
