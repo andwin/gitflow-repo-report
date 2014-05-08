@@ -17,14 +17,14 @@
   </div>
   <div class="col-md-9" role="main">
     <h1 id="overview">Overview</h1>
-    Report generated: <%=@report.time.strftime("%Y-%m-%d %H:%M:%S") %> <br />
+    <strong>Report generated:</strong> <%=@report.time.strftime("%Y-%m-%d %H:%M:%S") %> <br />
 
     <%= erb :repos, :layout => false, locals: {repos: @report.repo_names, title: 'Repos in report'} %>
 
-    Branch with most days since last commit: <%= @report.branch_with_most_days_since_last_commit %> days <br />
-    Branch with most unmerged commits: <%= @report.branch_with_most_unmerged_commits %> commits <br />
-    Total number of branches in all repos: <%= @report.total_number_of_branches %> <br />
-    Total number of unmerged commits: <%= @report.total_number_of_unmerged_commits %> <br />
+    <strong>Branch with most days since last commit:</strong> <%= @report.branch_with_most_days_since_last_commit %> days <br />
+    <strong>Branch with most unmerged commits:</strong> <%= @report.branch_with_most_unmerged_commits %> commits <br />
+    <strong>Total number of branches in all repos:</strong> <%= @report.total_number_of_branches %> <br />
+    <strong>Total number of unmerged commits:</strong> <%= @report.total_number_of_unmerged_commits %> <br />
 
 
     <%= erb :unmerged_branches, :layout => false, locals: {branches: @report.master_branches_not_merged_to_develop, title: 'Master branches not merged to develop', id: 'master-brances-not-merged-to-develop'} %>
