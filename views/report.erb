@@ -21,6 +21,11 @@
 
     <%= erb :repos, :layout => false, locals: {repos: @report.repo_names, title: 'Repos in report'} %>
 
+    Branch with most days since last commit: <%= @report.branch_with_most_days_since_last_commit %> days <br />
+    Branch with most unmerged commits: <%= @report.branch_with_most_unmerged_commits %> commits <br />
+    Total number of branches in all repos: <%= @report.total_number_of_branches %> <br />
+    Total number of unmerged commits: <%= @report.total_number_of_unmerged_commits %> <br />
+
 
     <%= erb :unmerged_branches, :layout => false, locals: {branches: @report.master_branches_not_merged_to_develop, title: 'Master branches not merged to develop', id: 'master-brances-not-merged-to-develop'} %>
 
